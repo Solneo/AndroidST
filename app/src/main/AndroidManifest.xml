@@ -10,18 +10,14 @@
     <uses-permission
         android:name="android.permission.CAMERA"
         tools:node="replace" />
-
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.camera2.full" />
-    <meta-data
-        android:name="com.google.android.gms.version"
-        android:value="@integer/google_play_services_version" />
-    <meta-data
-        android:name="com.google.android.gms.vision.DEPENDENCIES"
-        android:value="barcode" />
+
     <application
 
         android:allowBackup="true"
@@ -31,6 +27,9 @@
 
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -47,7 +46,16 @@
                 <action android:name="android.intent.action.VIEW"></action>
             </intent-filter>
         </activity>
-        <activity android:name=".QrReader.QRReaderScanActivity"></activity>
+        <activity android:name=".QrReader.BARReader"></activity>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/path"/>
+        </provider>
     </application>
 
 </manifest>

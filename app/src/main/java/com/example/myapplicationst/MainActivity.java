@@ -20,6 +20,7 @@ import com.example.myapplicationst.Fragment.BuildingList;
 import com.example.myapplicationst.Fragment.MainList;
 import com.example.myapplicationst.Fragment.QRReaderFragment;
 import com.example.myapplicationst.Fragment.Tools;
+import com.example.myapplicationst.QrReader.BARReader;
 import com.example.myapplicationst.QrReader.QRReaderActivity;
 import com.example.myapplicationst.QrReader.QRReaderScanActivity;
 
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void goToQRReaderActivity(View v) {
-        Intent intent = new Intent(this, QRReaderScanActivity.class);
+        Intent intent = new Intent(this, BARReader.class);
         startActivity(intent);
     }
 }

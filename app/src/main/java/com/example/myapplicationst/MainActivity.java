@@ -21,6 +21,7 @@ import com.example.myapplicationst.Fragment.MainList;
 import com.example.myapplicationst.Fragment.QRReaderFragment;
 import com.example.myapplicationst.Fragment.Tools;
 import com.example.myapplicationst.QrReader.QRReaderActivity;
+import com.example.myapplicationst.QrReader.QRReaderScanActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -135,7 +136,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void goToQRReaderActivity(View v) {
-        Intent intent = new Intent(this, QRReaderActivity.class);
+        Intent intent = new Intent(this, QRReaderScanActivity.class);
         startActivity(intent);
     }
 }

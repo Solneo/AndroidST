@@ -47,6 +47,7 @@
                 <action android:name="android.intent.action.VIEW"></action>
             </intent-filter>
         </activity>
+        <activity android:name=".QrReader.QRReaderScanActivity"></activity>
     </application>
 
 </manifest>

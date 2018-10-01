@@ -20,6 +20,7 @@ import com.example.myapplicationst.Fragment.BuildingList;
 import com.example.myapplicationst.Fragment.MainList;
 import com.example.myapplicationst.Fragment.QRReaderFragment;
 import com.example.myapplicationst.Fragment.Tools;
+import com.example.myapplicationst.QrReader.QRReaderActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

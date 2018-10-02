@@ -34,7 +34,7 @@
             android:layout_width="88dp"
             android:layout_height="88dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_location_city_black_24dp" />
+            android:src="@mipmap/ic_launcher_round" />
 
         <TextView
             android:id="@+id/textView3"

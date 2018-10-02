@@ -41,11 +41,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".OneObjekt"></activity>
-        <activity android:name=".QrReader.QRReaderActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"></action>
-            </intent-filter>
-        </activity>
         <activity android:name=".QrReader.BARReader"></activity>
         <provider
             android:name="android.support.v4.content.FileProvider"

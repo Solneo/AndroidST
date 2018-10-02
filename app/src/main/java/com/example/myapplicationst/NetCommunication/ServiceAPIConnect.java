@@ -7,6 +7,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by Ыщвф on 02.10.2018.
@@ -14,5 +15,5 @@ import retrofit2.http.Path;
 
 public interface ServiceAPIConnect {
     @GET("/")
-    Call<List<PostModel>> listRepos(@Path("user") String user);
+    Call<List<PostModel>> getData(@Query("name") String name);
 }

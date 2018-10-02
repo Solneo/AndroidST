@@ -23,6 +23,7 @@ import com.example.myapplicationst.Fragment.Tools;
 import com.example.myapplicationst.QrReader.BARReader;
 
 
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

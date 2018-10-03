@@ -6,6 +6,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.example.myapplicationst.NetCommunication.AppNetCom;
+import com.example.myapplicationst.NetCommunication.PostModel;
+import com.example.myapplicationst.NetCommunication.ServiceAPIConnect;
+
+import java.util.List;
+
 /**
  * Created by Ыщвф on 28.09.2018.
  */
@@ -20,4 +26,5 @@ public class OneObjekt extends Activity{
         Intent intent =  new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
 }

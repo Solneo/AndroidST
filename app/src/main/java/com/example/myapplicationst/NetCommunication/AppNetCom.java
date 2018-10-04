@@ -23,7 +23,9 @@ public class AppNetCom extends Application {
                 .build();
         serviceAPIConnect = retrofit.create(ServiceAPIConnect.class);
     }
+
     public static ServiceAPIConnect getApi(){
         return serviceAPIConnect;
     }
+
 }

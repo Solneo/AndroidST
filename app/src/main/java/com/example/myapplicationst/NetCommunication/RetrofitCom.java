@@ -8,7 +8,7 @@ import retrofit2.Call;
 
 public class RetrofitCom implements ServiceAPIConnect{
     @Override
-    public Call listRepos(String user) {
+    public Call getData(String user) {
         return null;
     }
 }

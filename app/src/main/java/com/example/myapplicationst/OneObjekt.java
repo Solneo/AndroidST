@@ -31,15 +31,8 @@ public class OneObjekt extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.one_objekt_layout);
-        posts = new ArrayList<>();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        AdapterResponse adapter = new AdapterResponse(posts);
-        recyclerView.setAdapter(adapter);
-        startResponse();
+       // startResponse();
     }
 
     public void onBackPressedButton(View v) {
@@ -47,12 +40,20 @@ public class OneObjekt extends Activity {
         startActivity(intent);
     }
 
-    public void setPostModel() {
-
+    public void onButtonStartResponce(View v) {
+        startResponse();
     }
 
     public void startResponse() {
+        posts = new ArrayList<>();
 
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        AdapterResponse adapter = new AdapterResponse(posts);
+        recyclerView.setAdapter(adapter);
       /*  try {
             Response response = AppNetCom.getApi().getData("app",50).execute();
         } catch (Exception e) {

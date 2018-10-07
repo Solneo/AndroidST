@@ -14,6 +14,6 @@ import retrofit2.http.Query;
  */
 
 public interface ServiceAPIConnect {
-    @GET("/")
-    Call<List<PostModel>> getData(@Query("name") String name);
+    @GET("/api/get")
+    Call<List<PostModel>> getData(@Query("name") String name, @Query("num") int count);
 }

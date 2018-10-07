@@ -27,7 +27,7 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
     @NonNull
     @Override
     public AdapterResponse.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_objekt_layout, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_item, parent, false);
         return new ViewHolder(v);
     }
 

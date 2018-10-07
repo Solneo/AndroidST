@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.example.myapplicationst.NetCommunication.AppNetCom;
 import com.example.myapplicationst.NetCommunication.PostModel;
-import com.example.myapplicationst.NetCommunication.ServiceAPIConnect;
 
 import java.util.List;
 

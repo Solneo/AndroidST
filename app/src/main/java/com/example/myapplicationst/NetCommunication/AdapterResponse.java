@@ -1,6 +1,7 @@
 package com.example.myapplicationst.NetCommunication;
 
 import android.os.Build;
+import android.text.Html;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.support.annotation.NonNull;
@@ -32,6 +33,13 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull AdapterResponse.ViewHolder holder, int position) {
+        PostModel postModel = posts.get(position);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            holder.post.setText(Html.fromHtml(postModel.getElementPureHtml(), Html.FROM_HTML_MODE_LEGACY));
+        }else {
+            holder.post.setText(Html.fromHtml(postModel.getElementPureHtml()));
+        }
+        holder.site.setText(postModel.getSite());
 
     }
 

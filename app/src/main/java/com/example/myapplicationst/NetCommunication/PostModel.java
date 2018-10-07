@@ -20,6 +20,13 @@ public class PostModel {
     @SerializedName("image")
     @Expose
     private String image;
+    @SerializedName("link")
+    @Expose
+    private Object link;
+    @SerializedName("elementPureHtml")
+    @Expose
+    private String elementPureHtml;
+
 
     public void setSite(String site) {
         this.site = site;
@@ -51,6 +58,14 @@ public class PostModel {
 
     public String getImage() {
         return image;
+    }
+
+    public String getElementPureHtml() {
+        return elementPureHtml;
+    }
+
+    public void setElementPureHtml(String elementPureHtml) {
+        this.elementPureHtml = elementPureHtml;
     }
 }
 

@@ -19,21 +19,7 @@
             android:layout_gravity="center"
             android:src="@mipmap/ic_launcher_round" />
 
-        <TextView
-            android:id="@+id/textView_post"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1-к квартира, "
-            android:textColor="@color/colorDarkWhite"
-            android:textSize="24dp"/>
 
-        <TextView
-            android:id="@+id/textView_site"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Местонахождение: там-то, там-то..."
-            android:textColor="@color/colorDarkWhite"
-            android:textSize="14dp"/>
 
         <Button
             android:id="@+id/button3"

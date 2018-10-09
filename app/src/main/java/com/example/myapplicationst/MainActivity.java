@@ -100,8 +100,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Действие при нажатии на иконку камеры импорт
-            //fragmentClass = MainList.class;
-            goToNewActivity();
+            fragmentClass = MainList.class;
 
         } else if (id == R.id.nav_gallery) {
             fragmentClass = BuildingList.class;

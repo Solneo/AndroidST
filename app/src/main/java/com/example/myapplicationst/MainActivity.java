@@ -20,13 +20,16 @@ import com.example.myapplicationst.Fragment.BuildingList;
 import com.example.myapplicationst.Fragment.MainList;
 import com.example.myapplicationst.Fragment.QRReaderFragment;
 import com.example.myapplicationst.Fragment.Tools;
+import com.example.myapplicationst.QrReader.BARReader;
+
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {//Тут происходит инициализация шторки
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);//Тут происходит инициализация шторки
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -97,7 +100,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Действие при нажатии на иконку камеры импорт
-            fragmentClass = MainList.class;
+            //fragmentClass = MainList.class;
+            goToNewActivity();
 
         } else if (id == R.id.nav_gallery) {
             fragmentClass = BuildingList.class;
@@ -132,9 +136,13 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, OneObjekt.class);
         startActivity(intent);
     }
+    public void goToNewActivity() {
+        Intent intent = new Intent(this, OneObjekt.class);
+        startActivity(intent);
+    }
 
     public void goToQRReaderActivity(View v) {
-        Intent intent = new Intent(this, QRReaderActivity.class);
+        Intent intent = new Intent(this, BARReader.class);
         startActivity(intent);
     }
 }

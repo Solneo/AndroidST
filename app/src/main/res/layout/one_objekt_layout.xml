@@ -2,13 +2,35 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/ic_launcher_background">
 
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher_round" />
+
+
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Соединение JSON"
+            tools:layout_editor_absoluteX="114dp"
+            tools:layout_editor_absoluteY="203dp"
+            android:onClick="onButtonStartResponce"
+            />
+<!--
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
@@ -20,37 +42,23 @@
             android:layout_marginStart="262dp"
             android:background="@drawable/side_nav_bar"
             android:onClick="onBackPressedButton"
-            android:text="Назад" />
-    </RelativeLayout>
+            android:text="Назад" />-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/ic_launcher_background">
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="88dp"
-            android:layout_height="88dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_location_city_black_24dp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1-к квартира, "
-            android:textColor="@color/colorDarkWhite"
-            android:textSize="24dp"/>
+            android:background="@color/colorDarkWhite"
+            android:clipChildren="true"
+            android:clipToPadding="false"
+            android:scrollbars="vertical" />
 
-        <TextView
-            android:id="@+id/textView4"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Местонахождение: там-то, там-то..."
-            android:textColor="@color/colorDarkWhite"
-            android:textSize="14dp"/>
+            android:layout_height="wrap_content">
+
+        </RelativeLayout>
 
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -30,7 +30,7 @@
             tools:layout_editor_absoluteY="203dp"
             android:onClick="onButtonStartResponce"
             />
-
+<!--
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             android:layout_marginStart="262dp"
             android:background="@drawable/side_nav_bar"
             android:onClick="onBackPressedButton"
-            android:text="Назад" />
+            android:text="Назад" />-->
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"

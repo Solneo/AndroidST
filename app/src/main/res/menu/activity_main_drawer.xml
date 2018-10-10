@@ -3,37 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_main"
             android:icon="@drawable/ic_home_black_24dp"
             android:title="Главная" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_object"
             android:icon="@drawable/ic_location_city_black_24dp"
             android:title="Мои объекты" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Слайдер"
-            />
+            android:id="@+id/nav_account"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="Вход или авторизация" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Настройки" />
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_search_black_24dp"
+            android:title="Поиск" />
+        <item
+            android:id="@+id/nav_favorites"
+            android:icon="@drawable/ic_star_black_24dp"
+            android:title="Избранное" />
+        <item
+            android:id="@+id/nav_messages"
+            android:icon="@drawable/ic_mode_comment_black_24dp"
+            android:title="Сообщения" />
     </group>
+    <group
+        android:id="@+id/menu_bottom"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Поделиться" />
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="Настройки" />
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Поделиться" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Отправить" />
-        </menu>
-    </item>
-
+    </group>
 </menu>

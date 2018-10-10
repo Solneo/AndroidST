@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -9,25 +9,28 @@
         android:orientation="vertical">
 
 
-        <android.support.design.widget.TabLayout
+        <Button
+            android:id="@+id/button_arenda"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:text="Button" />
 
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Left" />
+        <Button
+            android:id="@+id/button_buy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
 
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Center" />
+        <Button
+            android:id="@+id/button_new"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            style="@style/RoundedButton">
 
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Right" />
-        </android.support.design.widget.TabLayout>
+
+        </Button>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.myapplicationst;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -23,15 +24,22 @@ import com.example.myapplicationst.Fragment.Tools;
 import com.example.myapplicationst.QrReader.BARReader;
 
 
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private Fragment fragment = null;
+    private Class fragmentClass = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (fragmentClass == null) {
+            fragmentClass = MainList.class;
+            setFragment();
+            setFragmentMenegerAndReplFragment();
+        }
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -68,7 +76,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -88,59 +95,78 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onCreateNavigateUpTaskStack(TaskStackBuilder builder) {
+        super.onCreateNavigateUpTaskStack(builder);
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-
-        Fragment fragment = null;
-        Class fragmentClass = MainList.class;
         // Добавляем эдементы навигации для возможности кликов по ним
         int id = item.getItemId();
 
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_main) {
             // Действие при нажатии на иконку камеры импорт
             fragmentClass = MainList.class;
 
-        } else if (id == R.id.nav_gallery) {
-            fragmentClass = BuildingList.class;
+        } else if (id == R.id.nav_object) {
+            goToObjektActivity();
 
-        } else if (id == R.id.nav_slideshow) {
-            fragmentClass = QRReaderFragment.class;
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_account) {
+            goToQRReaderActivity();
+        } else if (id == R.id.nav_search) {
+
+        } else if (id == R.id.nav_favorites) {
+
+        } else if (id == R.id.nav_messages) {
+
+        } else if (id == R.id.nav_setting) {
             fragmentClass = Tools.class;
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
+        setFragment();
+        fragmentItemDr();
+        setFragmentMenegerAndReplFragment();
+        item.setChecked(true);
+        setTitle(item.getTitle());
+        return true;
+    }
 
+    public void setFragment() {
         try {
             fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setFragmentMenegerAndReplFragment() {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
-        item.setChecked(true);
-        setTitle(item.getTitle());
+    }
 
+    public void fragmentItemDr() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     public void goToNewActivity(View v) {
         Intent intent = new Intent(this, OneObjekt.class);
         startActivity(intent);
     }
-    public void goToNewActivity() {
+
+    public void goToObjektActivity() {
         Intent intent = new Intent(this, OneObjekt.class);
         startActivity(intent);
     }
 
     public void goToQRReaderActivity(View v) {
+        Intent intent = new Intent(this, BARReader.class);
+        startActivity(intent);
+    }
+
+    public void goToQRReaderActivity() {
         Intent intent = new Intent(this, BARReader.class);
         startActivity(intent);
     }

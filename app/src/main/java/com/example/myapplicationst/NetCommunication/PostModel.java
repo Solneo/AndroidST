@@ -28,6 +28,7 @@ public class PostModel {
     private String elementPureHtml;
 
 
+
     public void setSite(String site) {
         this.site = site;
     }

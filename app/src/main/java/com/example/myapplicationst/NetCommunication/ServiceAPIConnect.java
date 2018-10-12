@@ -6,6 +6,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -14,6 +15,6 @@ import retrofit2.http.Query;
  */
 
 public interface ServiceAPIConnect {
-    @GET("/api/get")
+    @GET("/app")
     Call<List<PostModel>> getData(@Query("name") String name, @Query("num") int count);
 }

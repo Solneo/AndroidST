@@ -34,12 +34,13 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
     public void onBindViewHolder(@NonNull AdapterResponse.ViewHolder holder, int position) {
         PostModel postModel = posts.get(position);
         holder.setIsRecyclable(false);
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+        /*if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
             holder.post.setText(Html.fromHtml(postModel.getElementPureHtml(), Html.FROM_HTML_MODE_LEGACY));
         }else {
             holder.post.setText(Html.fromHtml(postModel.getElementPureHtml()));
-        }
-        holder.site.setText(postModel.getSite());
+        }*/
+      holder.post.setText(postModel.getPrice());
+      holder.site.setText(postModel.getTitle());
 
     }
 

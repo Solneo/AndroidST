@@ -4,6 +4,7 @@
     package="com.example.myapplicationst">
 
     <uses-sdk android:minSdkVersion="8" />
+
     <meta-data
         android:name="com.google.android.gms.vision.DEPENDENCIES"
         android:value="barcode" />
@@ -19,6 +20,12 @@
     <uses-feature android:name="android.hardware.camera2.full" />
     <uses-feature android:name="android.hardware.wifi" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".AppNetCom"
@@ -42,8 +49,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OneObjekt"></activity>
-        <activity android:name=".QrReader.BARReader"></activity>
+        <activity android:name=".OneObjekt" />
+        <activity android:name=".QrReader.BARReader" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -54,6 +61,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/path" />
         </provider>
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"></activity>
     </application>
 
 </manifest>

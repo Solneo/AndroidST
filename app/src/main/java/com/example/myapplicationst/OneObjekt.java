@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -70,6 +71,7 @@ public class OneObjekt extends Activity {
             @Override
             public void onFailure(Call<List<PostModel>> call, Throwable t) {
                 Toast.makeText(OneObjekt.this, "Чет, поломалось...", Toast.LENGTH_SHORT).show();
+                Log.i("sdf",t.getMessage());
             }
         });
     }

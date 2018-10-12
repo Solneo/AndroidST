@@ -21,7 +21,7 @@ public class AppNetCom extends Application {
     public final void onCreate() {
         super.onCreate();
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://umorili.herokuapp.com")
+                .baseUrl("https://novorossiysk.33kvartiry.ru")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         serviceAPIConnect = retrofit.create(ServiceAPIConnect.class);

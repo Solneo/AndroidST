@@ -5,4 +5,10 @@
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+    <style name="RoundedButton" parent="@style/Widget.AppCompat.Button.Colored">
+        <!--<item name="colorAccent">#111</item>-->
+        <item name="background">@drawable/insert_but_round</item>
+        <item name="colorButtonNormal">#111</item>
+        <item name="colorControlHighlight">#673ab7</item>
+    </style>
 </resources>

@@ -23,10 +23,10 @@
 
         <Button
             android:id="@+id/button_new"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button"
-            style="@style/RoundedButton">
+            android:text="Button">
 
 
         </Button>

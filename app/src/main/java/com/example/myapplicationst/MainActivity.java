@@ -117,9 +117,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_account) {
             goToQRReaderActivity();
         } else if (id == R.id.nav_search) {
-
+            fragmentClass = BuildingList.class;
         } else if (id == R.id.nav_favorites) {
-
+            goToLoginActivity();
         } else if (id == R.id.nav_messages) {
 
         } else if (id == R.id.nav_setting) {
@@ -158,6 +158,10 @@ public class MainActivity extends AppCompatActivity
 
     public void goToObjektActivity() {
         Intent intent = new Intent(this, OneObjekt.class);
+        startActivity(intent);
+    }
+    public void goToLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

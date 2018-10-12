@@ -7,6 +7,8 @@ package com.example.myapplicationst.NetCommunication;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class PostModel {
     @SerializedName("site")
     @Expose
@@ -17,16 +19,18 @@ public class PostModel {
     @SerializedName("price")
     @Expose
     private String price;
-    @SerializedName("image")
+
+    @SerializedName("images")
     @Expose
-    private String image;
+    private Images images;
+
+
     @SerializedName("link")
     @Expose
     private Object link;
     @SerializedName("elementPureHtml")
     @Expose
     private String elementPureHtml;
-
 
 
     public void setSite(String site) {
@@ -53,13 +57,19 @@ public class PostModel {
         return price;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImages(Images images) {
+        this.images = images;
+    }
+
+    public Images getImages() {
+        return images;
     }
 
     public String getImage() {
-        return image;
+
+        return images.getSrc();
     }
+
 
     public String getElementPureHtml() {
         return elementPureHtml;

@@ -20,6 +20,11 @@ public class PostModel {
     @Expose
     private String price;
 
+    @SerializedName("rent_date")
+    @Expose
+    private String rent_date;
+
+
     @SerializedName("images")
     @Expose
     private Images images;
@@ -39,6 +44,13 @@ public class PostModel {
 
     public String getSite() {
         return site;
+    }
+    public void setRent_date(String rent_date) {
+        this.rent_date = rent_date;
+    }
+
+    public String getRent_date() {
+        return rent_date;
     }
 
     public void setTitle(String title) {

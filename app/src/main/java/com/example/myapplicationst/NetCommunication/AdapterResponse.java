@@ -48,8 +48,8 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
             holder.post.setText(Html.fromHtml(postModel.getElementPureHtml()));
         }*/
 
-
-      holder.post.setText(postModel.getPrice());
+        holder.sdacha.setText("Сдача в " + postModel.getRent_date());
+      holder.post.setText(postModel.getPrice()+ " руб/м. кв.");
       holder.site.setText(postModel.getTitle());
         /*Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(holder.prev);*/
         Picasso.get().load(postModel.getImage()).into(holder.prev);
@@ -67,12 +67,14 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
         TextView post;
         TextView site;
         ImageView prev;
+        TextView sdacha;
 
         public ViewHolder(View v) {
             super(v);
             post = (TextView) v.findViewById(R.id.textView_post);
             site = (TextView) v.findViewById(R.id.textView_site);
             prev = (ImageView) v.findViewById(R.id.image_pre);
+            sdacha = (TextView) v.findViewById(R.id.sdacha);
             /*site.setVerticalScrollbarPosition(1);
             post.setVerticalScrollbarPosition(2);*/
 

@@ -33,7 +33,7 @@ public class OneObjekt extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.one_objekt_layout);
 
-       // startResponse();
+        startResponse();
     }
 
     public void onBackPressedButton(View v) {
@@ -41,9 +41,9 @@ public class OneObjekt extends Activity {
         startActivity(intent);
     }
 
-    public void onButtonStartResponce(View v) {
+   /* public void onButtonStartResponce(View v) {
         startResponse();
-    }
+    }*/
 
     public void startResponse() {
         posts = new ArrayList<>();

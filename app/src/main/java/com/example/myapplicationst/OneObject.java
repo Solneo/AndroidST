@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.myapplicationst.NetCommunication.AdapterForOneObj;
 import com.example.myapplicationst.NetCommunication.AdapterResponse;
 import com.example.myapplicationst.NetCommunication.PostModel;
 
@@ -49,12 +50,12 @@ public class OneObject extends Activity {
     public void startResponse() {
         posts = new ArrayList<>();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_oneobj);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        AdapterResponse adapter = new AdapterResponse(posts);
+        AdapterForOneObj adapter = new AdapterForOneObj(posts);
         recyclerView.setAdapter(adapter);
       /*  try {
             Response response = AppNetCom.getApi().getData("app",50).execute();

@@ -1,45 +1,39 @@
 package com.example.myapplicationst.NetCommunication;
 
-import android.media.Image;
-import android.os.Build;
-import android.text.Html;
-import android.view.View;
-import android.view.LayoutInflater;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplicationst.R;
-import com.squareup.picasso.Picasso;
 
-import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Ыщвф on 03.10.2018.
+ * Created by Ыщвф on 13.10.2018.
  */
 
-public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHolder> {
+public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.ViewHolderForOneObj> {
     private List<PostModel> posts;
     private List<Images> img;
 
-    public AdapterResponse(List<PostModel> posts) {
+    public AdapterForOneObj(List<PostModel> posts) {
         this.posts = posts;
     }
 
     @NonNull
     @Override
-    public AdapterResponse.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_item, parent, false);
+    public AdapterForOneObj.ViewHolderForOneObj onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_for_one_object, parent, false);
         v.setVisibility(View.VISIBLE);
-        return new ViewHolder(v);
+        return new AdapterForOneObj.ViewHolderForOneObj(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterResponse.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterForOneObj.ViewHolderForOneObj holder, int position) {
         PostModel postModel = posts.get(position);
 
         holder.setIsRecyclable(false);
@@ -64,20 +58,22 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
         return posts.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolderForOneObj extends RecyclerView.ViewHolder {
         TextView post;
         TextView site;
         ImageView prev;
         TextView sdacha;
         TextView addr;
 
-        public ViewHolder(View v) {
+        public ViewHolderForOneObj(View v) {
             super(v);
-            post = (TextView) v.findViewById(R.id.textView_price);
-            site = (TextView) v.findViewById(R.id.textView_gk);
-            prev = (ImageView) v.findViewById(R.id.image_main);
-            sdacha = (TextView) v.findViewById(R.id.sdacha_gk);
-            addr = (TextView) v.findViewById(R.id.addr_inObj);
+            post = (TextView) v.findViewById(R.id.textView_post);
+            site = (TextView) v.findViewById(R.id.textView_site);
+            prev = (ImageView) v.findViewById(R.id.image_pre);
+            sdacha = (TextView) v.findViewById(R.id.sdacha);
+            addr = (TextView) v.findViewById(R.id.addr);
+            /*site.setVerticalScrollbarPosition(1);
+            post.setVerticalScrollbarPosition(2);*/
 
         }
     }

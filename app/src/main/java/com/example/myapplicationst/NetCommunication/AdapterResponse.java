@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.myapplicationst.R;
 import com.squareup.picasso.Picasso;
 
@@ -47,12 +48,12 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
         }else {
             holder.post.setText(Html.fromHtml(postModel.getElementPureHtml()));
         }*/
-
+        holder.addr.setText(postModel.getAddr());
         holder.sdacha.setText("Сдача в " + postModel.getRent_date());
-      holder.post.setText(postModel.getPrice()+ " руб/м. кв.");
-      holder.site.setText(postModel.getTitle());
+        holder.post.setText(postModel.getPrice() + " руб/м. кв.");
+        holder.site.setText(postModel.getTitle());
         /*Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(holder.prev);*/
-        Picasso.get().load(postModel.getImage()).into(holder.prev);
+      /*  Picasso.get().load(postModel.getImage()).into(holder.prev);*/
 
     }
 
@@ -68,6 +69,7 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
         TextView site;
         ImageView prev;
         TextView sdacha;
+        TextView addr;
 
         public ViewHolder(View v) {
             super(v);
@@ -75,6 +77,7 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
             site = (TextView) v.findViewById(R.id.textView_site);
             prev = (ImageView) v.findViewById(R.id.image_pre);
             sdacha = (TextView) v.findViewById(R.id.sdacha);
+            addr = (TextView) v.findViewById(R.id.addr);
             /*site.setVerticalScrollbarPosition(1);
             post.setVerticalScrollbarPosition(2);*/
 

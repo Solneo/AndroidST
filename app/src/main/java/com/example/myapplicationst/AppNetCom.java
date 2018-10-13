@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.res.Configuration;
 
 import com.example.myapplicationst.NetCommunication.ServiceAPIConnect;
+import com.example.myapplicationst.NetCommunication.ServiceForOneObj;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -14,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AppNetCom extends Application {
     private static ServiceAPIConnect serviceAPIConnect;
+    private static ServiceForOneObj serviceForOneObj;
     private Retrofit retrofit;
 
 
@@ -25,10 +27,14 @@ public class AppNetCom extends Application {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         serviceAPIConnect = retrofit.create(ServiceAPIConnect.class);
+        serviceForOneObj = retrofit.create(ServiceForOneObj.class);
     }
 
     public static ServiceAPIConnect getApi() {
         return serviceAPIConnect;
+    }
+    public static ServiceForOneObj getApppi(){
+        return serviceForOneObj;
     }
     @Override
     public void onConfigurationChanged(Configuration newConfig) {

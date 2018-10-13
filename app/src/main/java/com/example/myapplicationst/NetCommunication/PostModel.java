@@ -8,6 +8,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PostModel {
     @SerializedName("site")
@@ -23,11 +24,13 @@ public class PostModel {
     @SerializedName("rent_date")
     @Expose
     private String rent_date;
-
-
-    @SerializedName("images")
+    @SerializedName("addr")
     @Expose
-    private Images images;
+    private String addr;
+
+    /*@SerializedName("images")
+    @Expose
+    private Images images;*/
 
 
     @SerializedName("link")
@@ -38,6 +41,13 @@ public class PostModel {
     private String elementPureHtml;
 
 
+    public void setAddr(String addr) {
+        this.addr = addr;
+    }
+
+    public String getAddr() {
+        return addr;
+    }
     public void setSite(String site) {
         this.site = site;
     }
@@ -69,7 +79,11 @@ public class PostModel {
         return price;
     }
 
-    public void setImages(Images images) {
+  /*  public void setImages(Images images) {
+        this.images = images;
+    }
+    public void setImages(List<Images> images) {
+
         this.images = images;
     }
 
@@ -81,7 +95,7 @@ public class PostModel {
 
         return images.getSrc();
     }
-
+*/
 
     public String getElementPureHtml() {
         return elementPureHtml;

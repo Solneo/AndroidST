@@ -24,7 +24,7 @@ import retrofit2.Response;
  * Created by Ыщвф on 28.09.2018.
  */
 
-public class OneObjekt extends Activity {
+public class ListObjekt extends Activity {
     RecyclerView recyclerView;
     List<PostModel> posts;
 
@@ -61,17 +61,27 @@ public class OneObjekt extends Activity {
 
         }*/
 
-        AppNetCom.getApi().getData("bash",50).enqueue(new Callback<List<PostModel>>() {
+        AppNetCom.getApi().getData().enqueue(new Callback<List<PostModel>>() {
+
             @Override
             public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
-                posts.addAll(response.body());
-                recyclerView.getAdapter().notifyDataSetChanged();
+                if(response.body()!= null) {
+                    posts.addAll(response.body());
+                    recyclerView.getAdapter().notifyDataSetChanged();
+                }else {
+                    okhttp3.Request request;
+                    request = call.request();
+                    Log.i("qwe", request.toString());
+                }
             }
 
             @Override
             public void onFailure(Call<List<PostModel>> call, Throwable t) {
-                Toast.makeText(OneObjekt.this, "Чет, поломалось...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListObjekt.this, "Чет, поломалось...", Toast.LENGTH_SHORT).show();
                 Log.i("sdf",t.getMessage());
+                okhttp3.Request request;
+                request = call.request();
+                Log.i("qwe", request.toString());
             }
         });
     }

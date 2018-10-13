@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_favorites) {
             goToLoginActivity();
         } else if (id == R.id.nav_messages) {
-
+            goToOneObject();
         } else if (id == R.id.nav_setting) {
             fragmentClass = Tools.class;
         }
@@ -152,12 +152,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void goToNewActivity(View v) {
-        Intent intent = new Intent(this, OneObjekt.class);
+        Intent intent = new Intent(this, ListObjekt.class);
         startActivity(intent);
     }
 
     public void goToObjektActivity() {
-        Intent intent = new Intent(this, OneObjekt.class);
+        Intent intent = new Intent(this, ListObjekt.class);
+        startActivity(intent);
+    }
+    public void goToOneObject() {
+        Intent intent = new Intent(this, OneObject.class);
         startActivity(intent);
     }
     public void goToLoginActivity() {

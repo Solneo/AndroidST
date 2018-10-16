@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.res.Configuration;
 
 import com.example.myapplicationst.NetCommunication.ServiceAPIConnect;
-import com.example.myapplicationst.NetCommunication.ServiceForOneObj;
+import com.google.android.gms.flags.Singletons;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -15,8 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AppNetCom extends Application {
     private static ServiceAPIConnect serviceAPIConnect;
-    private static ServiceForOneObj serviceForOneObj;
     private Retrofit retrofit;
+    private static String stringId;
 
 
     @Override
@@ -27,19 +27,25 @@ public class AppNetCom extends Application {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         serviceAPIConnect = retrofit.create(ServiceAPIConnect.class);
-        serviceForOneObj = retrofit.create(ServiceForOneObj.class);
+        setStringId("15");
+
+    }
+    public void setStringId(String stringId) {
+        this.stringId = stringId;
     }
 
+    public static String getStringId() {
+        return stringId;
+    }
     public static ServiceAPIConnect getApi() {
         return serviceAPIConnect;
     }
-    public static ServiceForOneObj getApppi(){
-        return serviceForOneObj;
-    }
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
     }
+
     @Override
     public void onLowMemory() {
         super.onLowMemory();

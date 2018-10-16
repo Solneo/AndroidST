@@ -17,4 +17,6 @@ import retrofit2.http.Query;
 public interface ServiceAPIConnect {
     @GET("/app")
     Call<List<PostModel>> getData();
+    @GET("/app/{id}")
+    Call<List<ModelOneObj>> getDat(@Path("id") String id);
 }

@@ -27,10 +27,13 @@ public class PostModel {
     @SerializedName("addr")
     @Expose
     private String addr;
-
-    /*@SerializedName("images")
+    @SerializedName("id")
     @Expose
-    private Images images;*/
+    private String objId;
+
+    @SerializedName("images")
+    @Expose
+    private Images images;
 
 
     @SerializedName("link")
@@ -47,6 +50,13 @@ public class PostModel {
 
     public String getAddr() {
         return addr;
+    }
+    public void setobjId(String objId) {
+        this.objId = objId;
+    }
+
+    public String getobjId() {
+        return objId;
     }
     public void setSite(String site) {
         this.site = site;
@@ -79,13 +89,17 @@ public class PostModel {
         return price;
     }
 
-  /*  public void setImages(Images images) {
+   public void setImages(Images images) {
         this.images = images;
     }
-    public void setImages(List<Images> images) {
+    /*public void setListImages(List<Images> images) {
 
-        this.images = images;
-    }
+        for (Images i: images) {
+            this.images = i;
+        }
+
+    }*/
+
 
     public Images getImages() {
         return images;
@@ -95,7 +109,7 @@ public class PostModel {
 
         return images.getSrc();
     }
-*/
+
 
     public String getElementPureHtml() {
         return elementPureHtml;

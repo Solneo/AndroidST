@@ -5,100 +5,136 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <RelativeLayout
+  <!--  <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="0dp"
+
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:elevation="3dp"
+        android:focusable="true"
+
+        app:cardBackgroundColor="#ccc"
+        app:cardCornerRadius="5dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?android:attr/selectableItemBackground">
+        app:layout_constraintTop_toTopOf="parent">-->
 
-        <ImageView
-            android:id="@+id/image_pre"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:adjustViewBounds="true"
-            android:focusableInTouchMode="true"
-            android:padding="5dp"
-            android:scaleType="centerInside"
-            app:srcCompat="@mipmap/ic_launcher"
-            tools:layout_editor_absoluteX="111dp"
-            tools:layout_editor_absoluteY="0dp" />
+            android:layout_marginBottom="8dp"
 
-        <TextView
-            android:id="@+id/textView_post"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_site"
-            android:layout_toEndOf="@+id/image_pre"
-            android:layout_toRightOf="@+id/image_pre"
-            android:focusable="true"
-            android:paddingBottom="0dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:paddingTop="5dp"
-            android:scaleType="centerInside"
-            android:text="1-к квартира, "
-            android:textColor="#338"
-            android:textSize="14dp"
-            android:textStyle="italic" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
-        <TextView
-            android:id="@+id/textView_site"
-            android:layout_width="368dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/image_pre"
-            android:layout_toRightOf="@+id/image_pre"
-            android:paddingBottom="0dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:paddingTop="5dp"
-            android:text="Местонахождение: там-то, там-то..."
-            android:textColor="#111"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="70dp" />
+            <ImageView
+                android:id="@+id/image_pre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:adjustViewBounds="true"
+                android:focusableInTouchMode="true"
+                android:padding="5dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@mipmap/ic_launcher"
+                tools:layout_editor_absoluteX="111dp"
+                tools:layout_editor_absoluteY="0dp" />
 
-        <TextView
-            android:id="@+id/sdacha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_post"
-            android:layout_toEndOf="@+id/image_pre"
-            android:layout_toRightOf="@+id/image_pre"
+            <TextView
+                android:id="@+id/textView_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView_site"
+                android:layout_toEndOf="@+id/image_pre"
+                android:layout_toRightOf="@+id/image_pre"
+                android:focusable="true"
+                android:paddingBottom="0dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:scaleType="centerInside"
+                android:text="1-к квартира, "
+                android:textColor="#338"
+                android:textSize="14dp"
+                android:textStyle="italic"
+                tools:layout_editor_absoluteX="63dp"
+                tools:layout_editor_absoluteY="160dp" />
 
-            android:paddingLeft="5dp"
-            android:paddingTop="4dp"
-            android:text="TextView"
-            android:textSize="10dp" />
+            <TextView
+                android:id="@+id/textView_site"
+                android:layout_width="368dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/image_pre"
+                android:layout_toRightOf="@+id/image_pre"
+                android:paddingBottom="0dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:text="Местонахождение: там-то, там-то..."
+                android:textColor="#111"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="70dp" />
 
-        <TextView
-            android:id="@+id/addr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/sdacha"
-            android:layout_toEndOf="@+id/image_pre"
-            android:layout_toRightOf="@+id/image_pre"
-            android:paddingBottom="3dp"
-            android:paddingLeft="5dp"
-            android:paddingTop="3dp"
-            android:text="TextView"
-            android:textSize="11dp" />
+            <TextView
+                android:id="@+id/sdacha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView_post"
+                android:layout_toEndOf="@+id/image_pre"
+                android:layout_toRightOf="@+id/image_pre"
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
+                android:paddingLeft="5dp"
+                android:paddingTop="4dp"
+                android:text="TextView"
+                android:textSize="10dp" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/addr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sdacha"
+                android:layout_toEndOf="@+id/image_pre"
+                android:layout_toRightOf="@+id/image_pre"
+                android:paddingBottom="3dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="3dp"
+                android:text="TextView"
+                android:textSize="11dp" />
 
+            <TextView
+                android:id="@+id/proxy_str"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView_post"
+                android:layout_marginLeft="21dp"
+                android:layout_marginStart="21dp"
+                android:layout_toEndOf="@+id/textView_post"
+                android:layout_toRightOf="@+id/textView_post"
+                android:text="TextView"
+                android:visibility="visible" />
+
+            <!-- <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />-->
+
+        </RelativeLayout>
+   <!-- </android.support.v7.widget.CardView>-->
 </android.support.constraint.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplicationst.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -17,10 +18,10 @@ import java.util.List;
  */
 
 public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.ViewHolderForOneObj> {
-    private List<PostModel> posts;
+    private List<ModelOneObj> posts;
     private List<Images> img;
 
-    public AdapterForOneObj(List<PostModel> posts) {
+    public AdapterForOneObj(List<ModelOneObj> posts) {
         this.posts = posts;
     }
 
@@ -34,7 +35,7 @@ public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.View
 
     @Override
     public void onBindViewHolder(@NonNull AdapterForOneObj.ViewHolderForOneObj holder, int position) {
-        PostModel postModel = posts.get(position);
+        ModelOneObj postModel = posts.get(position);
 
         holder.setIsRecyclable(false);
         /*if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
@@ -45,9 +46,9 @@ public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.View
         holder.addr.setText(postModel.getAddr());
         holder.sdacha.setText("Сдача в " + postModel.getRent_date());
         holder.post.setText(postModel.getPrice() + " руб/м. кв.");
-        holder.site.setText(postModel.getTitle());
+        holder.site.setText(postModel.getTitleObj());
         /*Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(holder.prev);*/
-      /*  Picasso.get().load(postModel.getImage()).into(holder.prev);*/
+     /*  Picasso.get().load(postModel.getImage()).into(holder.prev);*/
 
     }
 
@@ -67,13 +68,11 @@ public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.View
 
         public ViewHolderForOneObj(View v) {
             super(v);
-            post = (TextView) v.findViewById(R.id.textView_post);
-            site = (TextView) v.findViewById(R.id.textView_site);
-            prev = (ImageView) v.findViewById(R.id.image_pre);
-            sdacha = (TextView) v.findViewById(R.id.sdacha);
-            addr = (TextView) v.findViewById(R.id.addr);
-            /*site.setVerticalScrollbarPosition(1);
-            post.setVerticalScrollbarPosition(2);*/
+
+            post = (TextView) v.findViewById(R.id.textView_price);
+            site = (TextView) v.findViewById(R.id.textView_gk);
+            sdacha = (TextView) v.findViewById(R.id.sdacha_gk);
+            addr = (TextView) v.findViewById(R.id.addr_inObj);
 
         }
     }

@@ -1,6 +1,7 @@
 package com.example.myapplicationst.NetCommunication;
 
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +50,7 @@ public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.View
         holder.site.setText(postModel.getTitleObj());
         /*Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(holder.prev);*/
      /*  Picasso.get().load(postModel.getImage()).into(holder.prev);*/
-
+        /*holder.vpNews.cr*/
     }
 
     @Override
@@ -65,6 +66,7 @@ public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.View
         ImageView prev;
         TextView sdacha;
         TextView addr;
+       /* ViewPager vpNews;*/
 
         public ViewHolderForOneObj(View v) {
             super(v);
@@ -73,7 +75,7 @@ public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.View
             site = (TextView) v.findViewById(R.id.textView_gk);
             sdacha = (TextView) v.findViewById(R.id.sdacha_gk);
             addr = (TextView) v.findViewById(R.id.addr_inObj);
-
+           /* vpNews = (ViewPager) v.findViewById(R.id.viewPagerForImage);*/
         }
     }
 

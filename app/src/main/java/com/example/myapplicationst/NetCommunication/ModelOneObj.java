@@ -8,11 +8,14 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class ModelOneObj {
+    @SerializedName("title")
+    @Expose
     private String titleObj;
+
     private String addr;
     private String rent_date;
     private String price;
-    private int idObj;
+
 
     public String getTitleObj() {
         return titleObj;
@@ -30,9 +33,7 @@ public class ModelOneObj {
         return price;
     }
 
-    public int getidObj() {
-        return idObj;
-    }
+
 
     public void setTitleObj(String titleObj) {
         this.titleObj = titleObj;
@@ -50,7 +51,5 @@ public class ModelOneObj {
         this.price = price;
     }
 
-    public void setidObj(int idObj) {
-        this.idObj = idObj;
-    }
+
 }

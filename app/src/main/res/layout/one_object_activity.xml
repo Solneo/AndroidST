@@ -11,7 +11,21 @@
         android:layout_height="wrap_content"
         android:background="#111"
         android:orientation="vertical">
-
+        <!--<com.daimajia.slider.library.SliderLayout
+            android:id="@+id/slider_for_one"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            />-->
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="176dp"
+            android:layout_alignParentTop="true" />
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_oneobj"

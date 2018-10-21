@@ -1,28 +1,19 @@
 package com.example.myapplicationst.NetCommunication;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
-import android.os.Build;
-import android.text.Html;
-import android.util.Log;
-import android.view.View;
-import android.view.LayoutInflater;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.myapplicationst.AppNetCom;
-import com.example.myapplicationst.OneObject;
 import com.example.myapplicationst.R;
 import com.squareup.picasso.Picasso;
 
-import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +26,7 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
     private Context context;
     private static RecyclerViewClickListener itemListener;
 
-    public AdapterResponse(List<PostModel> posts,Context context, RecyclerViewClickListener itemListener) {
+    public AdapterResponse(List<PostModel> posts, Context context, RecyclerViewClickListener itemListener) {
         this.posts = posts;
         this.context = context;
         this.itemListener = itemListener;
@@ -45,6 +36,7 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
         Log.d("errrrrrr",
                 "0");
     }
+
     @NonNull
     @Override
     public AdapterResponse.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -68,9 +60,9 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
         holder.post.setText(postModel.getPrice() + " руб/м. кв.");
         holder.site.setText(postModel.getTitle());
         holder.str = postModel.getobjId();
-        holder.proxystr.setText(postModel.getobjId());
+
         /*Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(holder.prev);*/
-       /*  Picasso.get().load(postModel.getImage()).into(holder.prev);*/
+        Picasso.get().load(postModel.getImage()).into(holder.prev);
 
     }
 
@@ -87,7 +79,6 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
         ImageView prev;
         TextView sdacha;
         TextView addr;
-        TextView proxystr;
         String str;
 
         @Override
@@ -104,7 +95,8 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
             prev = (ImageView) v.findViewById(R.id.image_pre);
             sdacha = (TextView) v.findViewById(R.id.sdacha);
             addr = (TextView) v.findViewById(R.id.addr);
-            proxystr = (TextView) v.findViewById(R.id.proxy_str);
+
+
         }
     }
 

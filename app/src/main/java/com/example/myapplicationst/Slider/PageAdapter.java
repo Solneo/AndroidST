@@ -1,4 +1,4 @@
-package com.example.myapplicationst;
+package com.example.myapplicationst.Slider;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -7,18 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
+import com.example.myapplicationst.NetCommunication.Models.Images;
+import com.example.myapplicationst.R;
+import com.squareup.picasso.Picasso;
 
 public class PageAdapter extends PagerAdapter {
 
-    private ArrayList<Integer> images;
+  /*  private ArrayList<Integer> images;*/
+    private Images[] imgAr;
     private LayoutInflater inflater;
     private Context context;
 
-    public PageAdapter(Context context, ArrayList<Integer> images) {
+    public PageAdapter(Context context,/* ArrayList<Integer> images,*/Images[] imgArr) {
         this.context = context;
-        this.images=images;
+      /*  this.images=images;*/
         inflater = LayoutInflater.from(context);
+        this.imgAr = imgArr;
     }
 
     @Override
@@ -28,16 +32,18 @@ public class PageAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return images.size();
+        /*return images.size();*/
+        return imgAr.length;
     }
 
     @Override
-    public Object instantiateItem(ViewGroup view, int position) {
-        View myImageLayout = inflater.inflate(R.layout.fragment, view, false);
+    public Object instantiateItem(ViewGroup viewGroup, int position) {
+        View myImageLayout = inflater.inflate(R.layout.fragment, viewGroup, false);
         ImageView myImage = (ImageView) myImageLayout
                 .findViewById(R.id.image);
-        myImage.setImageResource(images.get(position));
-        view.addView(myImageLayout, 0);
+       /* myImage.setImageResource(images.get(position));*/
+        Picasso.get().load(imgAr[position].getSrc()).into(myImage);
+        viewGroup.addView(myImageLayout, 0);
         return myImageLayout;
     }
 

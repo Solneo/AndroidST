@@ -21,10 +21,19 @@
             android:layout_width="match_parent"
             android:layout_height="176dp"
             android:layout_alignParentTop="true" />
+       <!-- <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Соединение JSON"
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="203dp"
+        android:onClick="setSlider"
+        />-->
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/indicator"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="32dp"
             android:layout_alignParentBottom="true"/>
 
         <android.support.v7.widget.RecyclerView

@@ -1,8 +1,11 @@
 package com.example.myapplicationst;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
@@ -13,8 +16,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.myapplicationst.NetCommunication.AdapterForOneObj;
-import com.example.myapplicationst.NetCommunication.ModelOneObj;
+import com.example.myapplicationst.NetCommunication.Adapters.AdapterForOneObj;
+import com.example.myapplicationst.NetCommunication.Models.Images;
+import com.example.myapplicationst.NetCommunication.Models.ModelOneObj;
+import com.example.myapplicationst.Slider.Slider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,54 +33,49 @@ import retrofit2.Response;
  * Created by Ыщвф on 13.10.2018.
  */
 
-public class OneObject extends FragmentActivity {
+public class OneObject extends FragmentActivity implements FrInerf {
     RecyclerView recyclerView;
     List<ModelOneObj> post;
-    private static ViewPager mPager;
-    private static int currentPage = 0;
-    private static final Integer[] XMEN = {R.drawable.ic_menu_share,
-            R.drawable.ic_menu_send,
-            R.drawable.ic_home_black_24dp};
-    private ArrayList<Integer> XMENArray = new ArrayList<Integer>();
+    private ViewPager mPager;
+    Slider slider;
+    Images[] oneObjImg;
     ViewPager pager;
     PagerAdapter pagerAdapter;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.one_object_activity);
 
-        startResponse();
-        init();
+        /*HandlerThread handlerThread = new HandlerThread("MyHandlerThread");
+        handlerThread.start();
+        Handler handler = new Handler(handlerThread.getLooper());
+        Message msg = new Message();
+        msg.obj = "Ali send message";
+        handler.sendMessage(msg);*/
+
+            startResponse();
+
+       /* ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.submit()*/
+
     }
 
-    private void init() {
-        for (int i = 0; i < XMEN.length; i++)
-            XMENArray.add(XMEN[i]);
+    @Override
+    public void toRelate(Images[] imagesArray) {
+        this.oneObjImg = imagesArray;
+        setSlider();
+    }
 
+    public void setSlider() {
         mPager = (ViewPager) findViewById(R.id.pager);
-        mPager.setAdapter(new PageAdapter(OneObject.this, XMENArray));
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
-        indicator.setViewPager(mPager);
-
-        // Auto start of viewpager
-        final Handler handler = new Handler();
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == XMEN.length) {
-                    currentPage = 0;
-                }
-                mPager.setCurrentItem(currentPage++, true);
-            }
-        };
-        /*Timer swipeTimer = new Timer();
-        swipeTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, 2500, 2500);*/
+        Context context = OneObject.this;
+        slider = new Slider();
+        slider.init(mPager, indicator, context, oneObjImg);
     }
+
 
     public void onBackPressedButton(View v) {
         Intent intent = new Intent(this, MainActivity.class);
@@ -83,7 +83,6 @@ public class OneObject extends FragmentActivity {
     }
 
     public void startResponse() {
-
         post = new ArrayList<>();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_oneobj);
@@ -91,7 +90,7 @@ public class OneObject extends FragmentActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        AdapterForOneObj adapt = new AdapterForOneObj(post);
+        AdapterForOneObj adapt = new AdapterForOneObj(post, this);
         recyclerView.setAdapter(adapt);
 
         AppNetCom.getApi().getDat(AppNetCom.getStringId()).enqueue(new Callback<List<ModelOneObj>>() {
@@ -104,6 +103,7 @@ public class OneObject extends FragmentActivity {
                         if (response.body() != null) {
                             post.addAll(response.body());
                             recyclerView.getAdapter().notifyDataSetChanged();
+
                         } else {
                             okhttp3.Request request;
                             request = call.request();
@@ -127,7 +127,29 @@ public class OneObject extends FragmentActivity {
                 request = call.request();
                 Log.i("qwe", request.toString());
             }
+
         });
     }
-}
 
+/*
+
+    private class MyHandlerThread extends HandlerThread {
+
+        Handler handler;
+
+        public MyHandlerThread(String name) {
+            super(name);
+        }
+
+        @Override
+        protected void onLooperPrepared() {
+            handler = new Handler(getLooper()) {
+                @Override
+                public void handleMessage(Message msg) {
+                    // это отдельный поток, вне графического интерфейса,
+                    // для решения последовательного вызова не подошел
+                }
+            };
+        }
+    }*/
+}

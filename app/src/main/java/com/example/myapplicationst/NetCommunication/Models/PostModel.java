@@ -1,4 +1,4 @@
-package com.example.myapplicationst.NetCommunication;
+package com.example.myapplicationst.NetCommunication.Models;
 
 /**
  * Created by Ыщвф on 02.10.2018.
@@ -6,9 +6,6 @@ package com.example.myapplicationst.NetCommunication;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PostModel {
     @SerializedName("site")

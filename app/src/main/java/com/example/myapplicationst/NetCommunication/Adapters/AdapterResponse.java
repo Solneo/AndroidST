@@ -1,8 +1,7 @@
-package com.example.myapplicationst.NetCommunication;
+package com.example.myapplicationst.NetCommunication.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplicationst.NetCommunication.Models.Images;
+import com.example.myapplicationst.NetCommunication.Models.PostModel;
+import com.example.myapplicationst.NetCommunication.RecyclerViewClickListener;
 import com.example.myapplicationst.R;
 import com.squareup.picasso.Picasso;
 
@@ -33,7 +35,7 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
     }
 
     public void recyclerViewListClicked(View v, int position, String str) {
-        Log.d("errrrrrr",
+        Log.d("errr",
                 "0");
     }
 

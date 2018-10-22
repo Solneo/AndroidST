@@ -1,4 +1,4 @@
-package com.example.myapplicationst.NetCommunication;
+package com.example.myapplicationst.NetCommunication.Models;
 
 /**
  * Created by Ыщвф on 12.10.2018.

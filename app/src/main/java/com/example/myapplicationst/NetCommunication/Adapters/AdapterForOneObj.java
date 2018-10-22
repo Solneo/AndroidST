@@ -1,16 +1,19 @@
-package com.example.myapplicationst.NetCommunication;
+package com.example.myapplicationst.NetCommunication.Adapters;
 
 import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplicationst.FrInerf;
+import com.example.myapplicationst.NetCommunication.Models.Images;
+import com.example.myapplicationst.NetCommunication.Models.ModelOneObj;
 import com.example.myapplicationst.R;
-import com.squareup.picasso.Picasso;
+import com.example.myapplicationst.Slider.Slider;
 
 import java.util.List;
 
@@ -18,12 +21,16 @@ import java.util.List;
  * Created by Ыщвф on 13.10.2018.
  */
 
-public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.ViewHolderForOneObj> {
+public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.ViewHolderForOneObj> implements FrInerf {
     private List<ModelOneObj> posts;
-    private List<Images> img;
+    private Images[] img;
+    private Slider slider;
+    private static FrInerf frInerf;
 
-    public AdapterForOneObj(List<ModelOneObj> posts) {
+    public AdapterForOneObj(List<ModelOneObj> posts,
+                            FrInerf frInerf) {
         this.posts = posts;
+        this.frInerf = frInerf;
     }
 
     @NonNull
@@ -35,8 +42,13 @@ public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.View
     }
 
     @Override
+    public void toRelate(Images[] imagesArray) {
+        Log.i("err", "12594");
+    }
+
+    @Override
     public void onBindViewHolder(@NonNull AdapterForOneObj.ViewHolderForOneObj holder, int position) {
-        ModelOneObj postModel = posts.get(position);
+        ModelOneObj modelOneObj = posts.get(position);
 
         holder.setIsRecyclable(false);
         /*if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
@@ -44,10 +56,18 @@ public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.View
         }else {
             holder.post.setText(Html.fromHtml(postModel.getElementPureHtml()));
         }*/
-        holder.addr.setText(postModel.getAddr());
-        holder.sdacha.setText("Сдача в " + postModel.getRent_date());
-        holder.post.setText(postModel.getPrice() + " руб/м. кв.");
-        holder.site.setText(postModel.getTitleObj());
+        holder.addr.setText(modelOneObj.getAddr());
+        holder.sdacha.setText("Сдача в " + modelOneObj.getRent_date());
+        holder.post.setText(modelOneObj.getPrice() + " руб/м. кв.");
+        holder.site.setText(modelOneObj.getTitleObj());
+        frInerf.toRelate(modelOneObj.getImagesList());
+        int p = modelOneObj.getImagesList().length;
+        String t = Integer.toString(p);
+        Log.i("osh",t);
+        /*Images[] imgList = postModel.getImagesList();
+        for (Images img: imgList) {
+            Picasso.get().load(img.getSrc()).into(holder.prev);
+        }*/
         /*Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(holder.prev);*/
      /*  Picasso.get().load(postModel.getImage()).into(holder.prev);*/
         /*holder.vpNews.cr*/

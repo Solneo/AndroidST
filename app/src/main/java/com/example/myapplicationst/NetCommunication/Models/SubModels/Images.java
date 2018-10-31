@@ -1,4 +1,4 @@
-package com.example.myapplicationst.NetCommunication.Models;
+package com.example.myapplicationst.NetCommunication.Models.SubModels;
 
 /**
  * Created by Ыщвф on 12.10.2018.

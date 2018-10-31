@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplicationst.FrInerf;
-import com.example.myapplicationst.NetCommunication.Models.Images;
+import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.FrInerf;
+import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 import com.example.myapplicationst.NetCommunication.Models.ModelOneObj;
 import com.example.myapplicationst.R;
 import com.example.myapplicationst.Slider.Slider;
@@ -58,8 +58,9 @@ public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.View
         }*/
         holder.addr.setText(modelOneObj.getAddr());
         holder.sdacha.setText("Сдача в " + modelOneObj.getRent_date());
-        holder.post.setText(modelOneObj.getPrice() + " руб/м. кв.");
+        holder.post.setText("Цена  "+modelOneObj.getPrice() + " руб/м. кв.");
         holder.site.setText(modelOneObj.getTitleObj());
+        holder.bigText.setText(modelOneObj.getBigText());
         frInerf.toRelate(modelOneObj.getImagesList());
         int p = modelOneObj.getImagesList().length;
         String t = Integer.toString(p);
@@ -86,6 +87,7 @@ public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.View
         ImageView prev;
         TextView sdacha;
         TextView addr;
+        TextView bigText;
        /* ViewPager vpNews;*/
 
         public ViewHolderForOneObj(View v) {
@@ -95,6 +97,8 @@ public class AdapterForOneObj extends RecyclerView.Adapter<AdapterForOneObj.View
             site = (TextView) v.findViewById(R.id.textView_gk);
             sdacha = (TextView) v.findViewById(R.id.sdacha_gk);
             addr = (TextView) v.findViewById(R.id.addr_inObj);
+            bigText = (TextView) v.findViewById(R.id.bigText);
+
            /* vpNews = (ViewPager) v.findViewById(R.id.viewPagerForImage);*/
         }
     }

@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.myapplicationst.NetCommunication.Models.Images;
+import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 import com.example.myapplicationst.R;
 import com.squareup.picasso.Picasso;
 

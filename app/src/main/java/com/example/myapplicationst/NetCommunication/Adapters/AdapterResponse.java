@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplicationst.NetCommunication.Models.Images;
+import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 import com.example.myapplicationst.NetCommunication.Models.PostModel;
-import com.example.myapplicationst.NetCommunication.RecyclerViewClickListener;
+import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.RecyclerViewClickListener;
 import com.example.myapplicationst.R;
 import com.squareup.picasso.Picasso;
 

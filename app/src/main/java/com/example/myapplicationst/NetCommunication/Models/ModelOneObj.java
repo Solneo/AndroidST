@@ -1,5 +1,6 @@
 package com.example.myapplicationst.NetCommunication.Models;
 
+import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -15,23 +16,30 @@ public class ModelOneObj {
     private String addr;
     private String rent_date;
     private String price;
-   /* @SerializedName("images")
-    @Expose
-    private Images images;*/
+    /* @SerializedName("images")
+     @Expose
+     private Images images;*/
     @SerializedName("images")
     @Expose
     private Images[] imagesList;
+    @SerializedName("убыв.")
+    @Expose
+    private String bigText;
 
     public Images[] getImagesList() {
         return imagesList;
     }
 
-    public void setImagesList(Images[] thImagesList){
+    public void setImagesList(Images[] thImagesList) {
         this.imagesList = thImagesList;
     }
-  /*  public void setImages(Images images) {
-        this.images = images;
-    }*/
+
+    /*  public void setImages(Images images) {
+          this.images = images;
+      }*/
+    public String getBigText() {
+        return bigText;
+    }
 
     public String getTitleObj() {
         return titleObj;
@@ -49,6 +57,9 @@ public class ModelOneObj {
         return price;
     }
 
+    public void setBigText(String bigText) {
+        this.bigText = bigText;
+    }
 
     public void setTitleObj(String titleObj) {
         this.titleObj = titleObj;

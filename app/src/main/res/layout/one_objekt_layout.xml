@@ -48,7 +48,7 @@
             android:id="@+id/recycler_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#888"
+            android:background="#aaa"
             android:clipChildren="true"
             android:clipToPadding="false"
             android:scrollbars="vertical" />

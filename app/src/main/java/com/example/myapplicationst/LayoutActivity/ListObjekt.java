@@ -1,4 +1,4 @@
-package com.example.myapplicationst;
+package com.example.myapplicationst.LayoutActivity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,9 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.myapplicationst.App.AppNetCom;
+import com.example.myapplicationst.Main.MainActivity;
 import com.example.myapplicationst.NetCommunication.Adapters.AdapterResponse;
 import com.example.myapplicationst.NetCommunication.Models.PostModel;
-import com.example.myapplicationst.NetCommunication.RecyclerViewClickListener;
+import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.RecyclerViewClickListener;
+import com.example.myapplicationst.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="176dp"
             android:layout_alignParentTop="true" />
-       <!-- <Button
+        <!-- <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,22 +34,15 @@
             android:id="@+id/indicator"
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true"
+            android:background="#333"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_oneobj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#999"
-            android:clipChildren="true"
-            android:clipToPadding="false"
+            android:background="#ccc"
             android:scrollbars="vertical" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </RelativeLayout>
 
     </LinearLayout>
 

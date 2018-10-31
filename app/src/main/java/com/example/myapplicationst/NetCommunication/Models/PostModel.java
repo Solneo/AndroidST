@@ -4,6 +4,7 @@ package com.example.myapplicationst.NetCommunication.Models;
  * Created by Ыщвф on 02.10.2018.
  */
 
+import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -39,6 +40,8 @@ public class PostModel {
     @SerializedName("elementPureHtml")
     @Expose
     private String elementPureHtml;
+
+
 
 
     public void setAddr(String addr) {

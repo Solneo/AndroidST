@@ -1,4 +1,4 @@
-package com.example.myapplicationst;
+package com.example.myapplicationst.Main;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -17,11 +17,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.myapplicationst.LayoutActivity.CreateNewObj.CreateNewObjActivity;
 import com.example.myapplicationst.Fragment.BuildingList;
 import com.example.myapplicationst.Fragment.MainList;
-import com.example.myapplicationst.Fragment.QRReaderFragment;
-import com.example.myapplicationst.Fragment.Tools;
+import com.example.myapplicationst.LayoutActivity.ListObjekt;
+import com.example.myapplicationst.LayoutActivity.LoginActivity;
+import com.example.myapplicationst.LayoutActivity.OneObject;
 import com.example.myapplicationst.QrReader.BARReader;
+import com.example.myapplicationst.R;
 
 
 public class MainActivity extends AppCompatActivity
@@ -123,7 +126,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_messages) {
             goToOneObject();
         } else if (id == R.id.nav_setting) {
-            fragmentClass = Tools.class;
+            goToSettings();
         }
         setFragment();
         fragmentItemDr();
@@ -153,6 +156,10 @@ public class MainActivity extends AppCompatActivity
 
     public void goToNewActivity(View v) {
         Intent intent = new Intent(this, ListObjekt.class);
+        startActivity(intent);
+    }
+    public void goToSettings() {
+        Intent intent = new Intent(this, CreateNewObjActivity.class);
         startActivity(intent);
     }
 

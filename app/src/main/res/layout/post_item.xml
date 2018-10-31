@@ -12,8 +12,7 @@
         android:layout_gravity="center"
         android:layout_margin="0dp"
 
-
-        android:elevation="3dp"
+        android:elevation="8dp"
 
         app:cardBackgroundColor="#ccc"
         app:cardCornerRadius="5dp"
@@ -26,10 +25,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
+            android:id="@+id/rel_lay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-
+            android:layout_marginBottom="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.6"
@@ -39,18 +38,18 @@
 
             <ImageView
                 android:id="@+id/image_pre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="136dp"
+                android:layout_height="100dp"
+
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
                 android:adjustViewBounds="true"
                 android:focusableInTouchMode="true"
                 android:padding="5dp"
-                android:scaleType="centerInside"
-                app:srcCompat="@mipmap/ic_launcher"
-                tools:layout_editor_absoluteX="111dp"
-                tools:layout_editor_absoluteY="0dp" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@mipmap/ic_launcher" />
+            <!--tools:layout_editor_absoluteX="111dp"
+            tools:layout_editor_absoluteY="0dp"-->
 
             <TextView
                 android:id="@+id/textView_post"
@@ -116,17 +115,17 @@
                 android:text="TextView"
                 android:textSize="11dp" />
 
-           <!-- <TextView
-                android:id="@+id/proxy_str"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/textView_post"
-                android:layout_marginLeft="21dp"
-                android:layout_marginStart="21dp"
-                android:layout_toEndOf="@+id/textView_post"
-                android:layout_toRightOf="@+id/textView_post"
-                android:text="TextView"
-                android:visibility="visible" />-->
+            <!-- <TextView
+                 android:id="@+id/proxy_str"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignTop="@+id/textView_post"
+                 android:layout_marginLeft="21dp"
+                 android:layout_marginStart="21dp"
+                 android:layout_toEndOf="@+id/textView_post"
+                 android:layout_toRightOf="@+id/textView_post"
+                 android:text="TextView"
+                 android:visibility="visible" />-->
 
             <!-- <View
                 android:layout_width="match_parent"

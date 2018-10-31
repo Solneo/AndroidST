@@ -1,11 +1,8 @@
-package com.example.myapplicationst;
+package com.example.myapplicationst.LayoutActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
@@ -16,9 +13,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.myapplicationst.App.AppNetCom;
+import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.FrInerf;
+import com.example.myapplicationst.Main.MainActivity;
 import com.example.myapplicationst.NetCommunication.Adapters.AdapterForOneObj;
-import com.example.myapplicationst.NetCommunication.Models.Images;
+import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 import com.example.myapplicationst.NetCommunication.Models.ModelOneObj;
+import com.example.myapplicationst.R;
 import com.example.myapplicationst.Slider.Slider;
 
 import java.util.ArrayList;
@@ -54,9 +55,7 @@ public class OneObject extends FragmentActivity implements FrInerf {
         Message msg = new Message();
         msg.obj = "Ali send message";
         handler.sendMessage(msg);*/
-
             startResponse();
-
        /* ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit()*/
 

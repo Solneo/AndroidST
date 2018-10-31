@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 
-import com.example.myapplicationst.NetCommunication.Models.Images;
+import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 
 import java.util.ArrayList;
 

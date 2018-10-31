@@ -28,7 +28,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".AppNetCom"
+        android:name=".App.AppNetCom"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -40,7 +40,7 @@
             android:value="barcode" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".Main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -49,9 +49,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OneObject" />
-        <activity android:name=".ListObjekt" />
+        <activity android:name=".LayoutActivity.OneObject" />
+        <activity android:name=".LayoutActivity.ListObjekt" />
         <activity android:name=".QrReader.BARReader" />
+        <activity android:name=".LayoutActivity.CreateNewObj.CreateNewObjActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -64,8 +65,11 @@
         </provider>
 
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:name=".LayoutActivity.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".Settings.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>

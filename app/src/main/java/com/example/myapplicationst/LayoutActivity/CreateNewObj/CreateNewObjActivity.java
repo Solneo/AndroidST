@@ -1,12 +1,21 @@
 package com.example.myapplicationst.LayoutActivity.CreateNewObj;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.provider.SyncStateContract;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.myapplicationst.App.AppNetCom;
@@ -15,8 +24,11 @@ import com.example.myapplicationst.NetCommunication.Models.ModelPostAsk;
 import com.example.myapplicationst.NetCommunication.Models.SubModels.RecuestBody;
 import com.example.myapplicationst.NetCommunication.Models.SubModels.RequestMultiBody;
 import com.example.myapplicationst.R;
+import com.google.android.gms.common.internal.Constants;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,15 +48,41 @@ import static com.example.myapplicationst.NetCommunication.Models.SubModels.Requ
 public class CreateNewObjActivity extends Activity {
     RecyclerView recyclerView;
     List<ModelPostAsk> post;
+    int PICK_IMAGE = 0;
+    private Intent intent = new Intent();
+    File IMAGE_FILE;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_obj_activity);
-        startResponse();
     }
 
-    public void startResponse() {
+    public void GalerySelect(View v) {
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_PICK);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Bitmap img = null;
+        if (requestCode == PICK_IMAGE && data != null) {
+            Uri selectedImage = data.getData();
+            // create file
+            Cursor c = getContentResolver().query(selectedImage, null, null, null, null);
+            c.moveToFirst();
+            String path = c.getString(c.getColumnIndex(MediaStore.MediaColumns.DATA));
+            File file = new File(ImagePickUpUtil.getRealPathFromURI(this, selectedImage));
+            ImageView imageView = findViewById(R.id.imageView_prev);
+            IMAGE_FILE = file;
+            imageView.setImageURI(android.net.Uri.parse(file.getPath()));
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void startResponseCR(View v) {
+
         post = new ArrayList<>();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_createobj);
@@ -58,9 +96,8 @@ public class CreateNewObjActivity extends Activity {
         recuestBody.setLogin("MyTestLogin");
         recuestBody.setPassword("MyTestPassword");
 
-
         RequestMultiBody requestBody = new RequestMultiBody();
-        File file = new File(Environment.getExternalStorageDirectory(), "picture.jpg");
+        File file = IMAGE_FILE; /*new File(Environment.getExternalStorageDirectory(), "picture.jpg");*/
 
         MultipartBody.Part body = RequestMultiBody.prepareFilePart(this, "image", file);
 

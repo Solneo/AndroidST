@@ -64,7 +64,6 @@ public class CreateNewObjActivity extends Activity {
 
         MultipartBody.Part body = RequestMultiBody.prepareFilePart(this, "image", file);
 
-
         RequestBody login = createPartFromString(/*mEdtLogin.getText().toString()*/recuestBody.getLogin());
         RequestBody password = createPartFromString(/*mEdtPassword.getText().toString()*/recuestBody.getPassword());
       /*  RequestBody userId = createPartFromString(mUserId + "");*/

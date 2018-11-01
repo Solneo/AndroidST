@@ -2,6 +2,7 @@ package com.example.myapplicationst.LayoutActivity.CreateNewObj;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -58,9 +59,11 @@ public class CreateNewObjActivity extends Activity {
         recuestBody.setPassword("MyTestPassword");
 
 
-        /*RequestMultiBody requestBody = new RequestMultiBody();
-        File file = new File(mFilePath);
-        MultipartBody.Part body = ApiUtils.prepareFilePart(getActivity(), "image", file);*/
+        RequestMultiBody requestBody = new RequestMultiBody();
+        File file = new File(Environment.getExternalStorageDirectory(), "picture.jpg");
+
+        MultipartBody.Part body = RequestMultiBody.prepareFilePart(this, "image", file);
+
 
         RequestBody login = createPartFromString(/*mEdtLogin.getText().toString()*/recuestBody.getLogin());
         RequestBody password = createPartFromString(/*mEdtPassword.getText().toString()*/recuestBody.getPassword());
@@ -71,7 +74,7 @@ public class CreateNewObjActivity extends Activity {
         params.put("password", password);
         /*RequestBody user_id = params.put("user_id", userId);*/
 
-        AppNetCom.getApi().setData(params).enqueue(new Callback<List<ModelPostAsk>>() {
+        AppNetCom.getApi().setData(params, body).enqueue(new Callback<List<ModelPostAsk>>() {
             @Override
             public void onResponse(Call<List<ModelPostAsk>> call, Response<List<ModelPostAsk>> response) {
                 if (response.body() != null) {

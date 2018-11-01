@@ -39,7 +39,7 @@ public interface ServiceAPIConnect {
     Call<List<ModelPostAsk>> setData(
             /*@Field("login") String apiKey,
             @Field("password") String appId*/
-            @PartMap() Map<String, RequestBody> partMap
-           /* @Part MultipartBody.Part file*/
+            @PartMap() Map<String, RequestBody> partMap,
+            @Part MultipartBody.Part file
     );
 }

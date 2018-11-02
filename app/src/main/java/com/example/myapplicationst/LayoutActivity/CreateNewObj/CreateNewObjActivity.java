@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.myapplicationst.App.AppNetCom;
+import com.example.myapplicationst.Main.ThemeUtils;
 import com.example.myapplicationst.NetCommunication.Adapters.AdapterForYoken;
 import com.example.myapplicationst.NetCommunication.Models.ModelPostAsk;
 import com.example.myapplicationst.NetCommunication.Models.SubModels.RecuestBody;
@@ -56,6 +57,7 @@ public class CreateNewObjActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_obj_activity);
+        ThemeUtils.onActivityCreateSetTheme(this);
     }
 
     public void GalerySelect(View v) {

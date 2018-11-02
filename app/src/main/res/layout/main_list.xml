@@ -13,17 +13,22 @@
             android:id="@+id/button_arenda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:background="@android:color/holo_blue_dark"
+            android:text="Button"
+            android:onClick="setDarckTheme"/>
 
         <Button
             android:id="@+id/button_buy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:background="@android:color/holo_orange_light"
+            android:elevation="8dp"
+            android:text="Button"
+            android:onClick="setLightTheme"/>
 
         <Button
             android:id="@+id/button_new"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@android:style/Widget.Holo.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Button">

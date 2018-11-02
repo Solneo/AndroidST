@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.myapplicationst.App.AppNetCom;
+import com.example.myapplicationst.Main.ThemeUtils;
 import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.FrInerf;
 import com.example.myapplicationst.Main.MainActivity;
 import com.example.myapplicationst.NetCommunication.Adapters.AdapterForOneObj;
@@ -48,7 +49,7 @@ public class OneObject extends FragmentActivity implements FrInerf {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.one_object_activity);
-
+        ThemeUtils.onActivityCreateSetTheme(this);
         /*HandlerThread handlerThread = new HandlerThread("MyHandlerThread");
         handlerThread.start();
         Handler handler = new Handler(handlerThread.getLooper());

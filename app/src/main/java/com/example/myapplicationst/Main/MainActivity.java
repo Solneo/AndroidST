@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity
             fragmentClass = MainList.class;
             setFragment();
             setFragmentMenegerAndReplFragment();
+            ThemeUtils.onActivityCreateSetTheme(this);
         }
 
 
@@ -184,5 +185,11 @@ public class MainActivity extends AppCompatActivity
     public void goToQRReaderActivity() {
         Intent intent = new Intent(this, BARReader.class);
         startActivity(intent);
+    }
+    public void setDarckTheme(View v){
+        ThemeUtils.changeToTheme(this,0);
+    }
+    public void setLightTheme(View v){
+        ThemeUtils.changeToTheme(this,1);
     }
 }

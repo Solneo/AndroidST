@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.myapplicationst.App.AppNetCom;
 import com.example.myapplicationst.Main.MainActivity;
+import com.example.myapplicationst.Main.ThemeUtils;
 import com.example.myapplicationst.NetCommunication.Adapters.AdapterResponse;
 import com.example.myapplicationst.NetCommunication.Models.PostModel;
 import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.RecyclerViewClickListener;
@@ -38,7 +39,7 @@ public class ListObjekt extends Activity implements RecyclerViewClickListener{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.one_objekt_layout);
-
+        ThemeUtils.onActivityCreateSetTheme(this);
         startResponse();
     }
 

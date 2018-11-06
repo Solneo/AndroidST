@@ -1,9 +1,10 @@
-package com.example.myapplicationst.NetCommunication;
+package com.example.myapplicationst.NetCommunication.Models;
 
 /**
  * Created by Ыщвф on 02.10.2018.
  */
 
+import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -17,9 +18,22 @@ public class PostModel {
     @SerializedName("price")
     @Expose
     private String price;
-    @SerializedName("image")
+
+    @SerializedName("rent_date")
     @Expose
-    private String image;
+    private String rent_date;
+    @SerializedName("addr")
+    @Expose
+    private String addr;
+    @SerializedName("id")
+    @Expose
+    private String objId;
+
+    @SerializedName("images")
+    @Expose
+    private Images images;
+
+
     @SerializedName("link")
     @Expose
     private Object link;
@@ -28,12 +42,35 @@ public class PostModel {
     private String elementPureHtml;
 
 
+
+
+    public void setAddr(String addr) {
+        this.addr = addr;
+    }
+
+    public String getAddr() {
+        return addr;
+    }
+    public void setobjId(String objId) {
+        this.objId = objId;
+    }
+
+    public String getobjId() {
+        return objId;
+    }
     public void setSite(String site) {
         this.site = site;
     }
 
     public String getSite() {
         return site;
+    }
+    public void setRent_date(String rent_date) {
+        this.rent_date = rent_date;
+    }
+
+    public String getRent_date() {
+        return rent_date;
     }
 
     public void setTitle(String title) {
@@ -52,13 +89,27 @@ public class PostModel {
         return price;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+   public void setImages(Images images) {
+        this.images = images;
+    }
+    /*public void setListImages(List<Images> images) {
+
+        for (Images i: images) {
+            this.images = i;
+        }
+
+    }*/
+
+
+    public Images getImages() {
+        return images;
     }
 
     public String getImage() {
-        return image;
+
+        return images.getSrc();
     }
+
 
     public String getElementPureHtml() {
         return elementPureHtml;

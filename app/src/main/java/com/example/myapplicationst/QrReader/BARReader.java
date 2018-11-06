@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplicationst.BuildConfig;
+import com.example.myapplicationst.Main.ThemeUtils;
 import com.example.myapplicationst.R;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -44,6 +45,7 @@ public class BARReader extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bar_reader_layout);
+        ThemeUtils.onActivityCreateSetTheme(this);
         Button button = (Button) findViewById(R.id.button);
         scanResults = (TextView) findViewById(R.id.scan_results);
         if (savedInstanceState != null) {

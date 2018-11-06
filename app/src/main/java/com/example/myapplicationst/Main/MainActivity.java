@@ -1,13 +1,13 @@
-package com.example.myapplicationst;
+package com.example.myapplicationst.Main;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,23 +15,35 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.myapplicationst.Fragment.BuildingList;
 import com.example.myapplicationst.Fragment.MainList;
-import com.example.myapplicationst.Fragment.QRReaderFragment;
-import com.example.myapplicationst.Fragment.Tools;
+import com.example.myapplicationst.LayoutActivity.CreateNewObj.CreateNewObjActivity;
+import com.example.myapplicationst.LayoutActivity.ListObjekt;
+import com.example.myapplicationst.LayoutActivity.LoginActivity;
+import com.example.myapplicationst.LayoutActivity.OneObject;
 import com.example.myapplicationst.QrReader.BARReader;
-
+import com.example.myapplicationst.R;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private Fragment fragment = null;
+    private Class fragmentClass = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (fragmentClass == null) {
+            fragmentClass = MainList.class;
+            setFragment();
+            setFragmentMenegerAndReplFragment();
+            ThemeUtils.onActivityCreateSetTheme(this);
+        }
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -68,7 +80,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -88,61 +99,102 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onCreateNavigateUpTaskStack(TaskStackBuilder builder) {
+        super.onCreateNavigateUpTaskStack(builder);
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-
-        Fragment fragment = null;
-        Class fragmentClass = MainList.class;
         // Добавляем эдементы навигации для возможности кликов по ним
         int id = item.getItemId();
 
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_main) {
             // Действие при нажатии на иконку камеры импорт
-            //fragmentClass = MainList.class;
-            goToNewActivity();
+            fragmentClass = MainList.class;
 
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_object) {
+            goToObjektActivity();
+
+        } else if (id == R.id.nav_account) {
+            goToQRReaderActivity();
+        } else if (id == R.id.nav_search) {
             fragmentClass = BuildingList.class;
-
-        } else if (id == R.id.nav_slideshow) {
-            fragmentClass = QRReaderFragment.class;
-        } else if (id == R.id.nav_manage) {
-            fragmentClass = Tools.class;
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_favorites) {
+            goToLoginActivity();
+        } else if (id == R.id.nav_messages) {
+            goToOneObject();
+        } else if (id == R.id.nav_setting) {
+            goToSettings();
         }
+        setFragment();
+        fragmentItemDr();
+        setFragmentMenegerAndReplFragment();
+        item.setChecked(true);
+        setTitle(item.getTitle());
+        return true;
+    }
 
+    public void setFragment() {
         try {
             fragment = (Fragment) fragmentClass.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setFragmentMenegerAndReplFragment() {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
-        item.setChecked(true);
-        setTitle(item.getTitle());
+    }
 
+    public void fragmentItemDr() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     public void goToNewActivity(View v) {
-        Intent intent = new Intent(this, OneObjekt.class);
+        Intent intent = new Intent(this, ListObjekt.class);
         startActivity(intent);
     }
-    public void goToNewActivity() {
-        Intent intent = new Intent(this, OneObjekt.class);
+
+    public void goToSettings() {
+        Intent intent = new Intent(this, CreateNewObjActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToObjektActivity() {
+        Intent intent = new Intent(this, ListObjekt.class);
+        startActivity(intent);
+    }
+
+    public void goToOneObject() {
+        Intent intent = new Intent(this, OneObject.class);
+        startActivity(intent);
+    }
+
+    public void goToLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
     public void goToQRReaderActivity(View v) {
         Intent intent = new Intent(this, BARReader.class);
         startActivity(intent);
+    }
+
+    public void goToQRReaderActivity() {
+        Intent intent = new Intent(this, BARReader.class);
+        startActivity(intent);
+    }
+
+    public void setDarckTheme(View v) {
+        ThemeUtils.changeToTheme(this, 0);
+    }
+
+    public void setLightTheme(View v) {
+        ThemeUtils.changeToTheme(this, 1);
     }
 }

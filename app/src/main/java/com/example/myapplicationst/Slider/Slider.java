@@ -6,8 +6,6 @@ import android.support.v4.view.ViewPager;
 
 import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 
-import java.util.ArrayList;
-
 import me.relex.circleindicator.CircleIndicator;
 
 /**
@@ -20,7 +18,7 @@ public class Slider {
     /*  private static  Integer[] Arr = {R.drawable.ic_menu_share,
               R.drawable.ic_menu_send,
               R.drawable.ic_home_black_24dp};*/
-    private ArrayList<Integer> sliderArr = new ArrayList<Integer>();
+  /*  private ArrayList<Integer> sliderArr = new ArrayList<Integer>();*/
 
     public Slider() {
     }

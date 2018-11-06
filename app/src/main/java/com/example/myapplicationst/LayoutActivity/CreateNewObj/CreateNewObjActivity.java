@@ -1,16 +1,18 @@
 package com.example.myapplicationst.LayoutActivity.CreateNewObj;
 
+import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.SyncStateContract;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,11 +27,10 @@ import com.example.myapplicationst.NetCommunication.Models.ModelPostAsk;
 import com.example.myapplicationst.NetCommunication.Models.SubModels.RecuestBody;
 import com.example.myapplicationst.NetCommunication.Models.SubModels.RequestMultiBody;
 import com.example.myapplicationst.R;
-import com.google.android.gms.common.internal.Constants;
+import com.example.myapplicationst.UtilForDataSave.DataSaver;
+import com.example.myapplicationst.UtilForDataSave.DatabaseHelper;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,6 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.ContentValues.TAG;
 import static com.example.myapplicationst.NetCommunication.Models.SubModels.RequestMultiBody.createPartFromString;
 
 /**
@@ -52,6 +54,7 @@ public class CreateNewObjActivity extends Activity {
     int PICK_IMAGE = 0;
     private Intent intent = new Intent();
     File IMAGE_FILE;
+    DataSaver dataSaver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,6 +67,41 @@ public class CreateNewObjActivity extends Activity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_PICK);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+        saveData();
+    }
+
+    public boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG, "Permission is granted");
+                return true;
+            } else {
+
+                Log.v(TAG, "Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        } else { //permission is automatically granted on sdk<23 upon installation
+            Log.v(TAG, "Permission is granted");
+            return true;
+        }
+    }
+
+    public void saveData() {
+        try {
+            isStoragePermissionGranted();
+            DatabaseHelper databaseHelper = new DatabaseHelper(this);
+
+            SQLiteDatabase myDB = databaseHelper.getWritableDatabase();
+                    /*openOrCreateDatabase("my.db", 0x000, null);*/
+
+            dataSaver = new DataSaver(myDB, this);
+            dataSaver.qwe();
+            myDB.close();
+        } catch (Exception e) {
+            Log.i("myerrorDataSaver:", e.getMessage());
+        }
     }
 
     @Override

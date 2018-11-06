@@ -6,9 +6,8 @@ import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,10 +15,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import com.example.myapplicationst.LayoutActivity.CreateNewObj.CreateNewObjActivity;
 import com.example.myapplicationst.Fragment.BuildingList;
 import com.example.myapplicationst.Fragment.MainList;
+import com.example.myapplicationst.LayoutActivity.CreateNewObj.CreateNewObjActivity;
 import com.example.myapplicationst.LayoutActivity.ListObjekt;
 import com.example.myapplicationst.LayoutActivity.LoginActivity;
 import com.example.myapplicationst.LayoutActivity.OneObject;
@@ -159,6 +159,7 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, ListObjekt.class);
         startActivity(intent);
     }
+
     public void goToSettings() {
         Intent intent = new Intent(this, CreateNewObjActivity.class);
         startActivity(intent);
@@ -168,10 +169,12 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, ListObjekt.class);
         startActivity(intent);
     }
+
     public void goToOneObject() {
         Intent intent = new Intent(this, OneObject.class);
         startActivity(intent);
     }
+
     public void goToLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
@@ -186,10 +189,12 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, BARReader.class);
         startActivity(intent);
     }
-    public void setDarckTheme(View v){
-        ThemeUtils.changeToTheme(this,0);
+
+    public void setDarckTheme(View v) {
+        ThemeUtils.changeToTheme(this, 0);
     }
-    public void setLightTheme(View v){
-        ThemeUtils.changeToTheme(this,1);
+
+    public void setLightTheme(View v) {
+        ThemeUtils.changeToTheme(this, 1);
     }
 }

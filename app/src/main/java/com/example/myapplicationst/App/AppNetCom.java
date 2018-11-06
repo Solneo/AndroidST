@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.res.Configuration;
 
 import com.example.myapplicationst.NetCommunication.ServiceAPIConnect;
-import com.google.android.gms.flags.Singletons;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -41,6 +40,7 @@ public class AppNetCom extends Application {
                 .build();
         serviceAPIConnect = retrofit.create(ServiceAPIConnect.class);
         setStringId("15");
+
 
     }
 

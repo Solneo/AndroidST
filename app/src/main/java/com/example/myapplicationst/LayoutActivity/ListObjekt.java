@@ -15,9 +15,10 @@ import com.example.myapplicationst.App.AppNetCom;
 import com.example.myapplicationst.Main.MainActivity;
 import com.example.myapplicationst.Main.ThemeUtils;
 import com.example.myapplicationst.NetCommunication.Adapters.AdapterResponse;
-import com.example.myapplicationst.NetCommunication.Models.PostModel;
 import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.RecyclerViewClickListener;
+import com.example.myapplicationst.NetCommunication.Models.PostModel;
 import com.example.myapplicationst.R;
+import com.example.myapplicationst.UtilForDataSave.DataSaver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +31,13 @@ import retrofit2.Response;
  * Created by Ыщвф on 28.09.2018.
  */
 
-public class ListObjekt extends Activity implements RecyclerViewClickListener{
+public class ListObjekt extends Activity implements RecyclerViewClickListener {
     RecyclerView recyclerView;
     List<PostModel> posts = new ArrayList<>();
     AdapterResponse adapter;
-   Context context;
+    Context context;
+    DataSaver dataSaver;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,21 +46,33 @@ public class ListObjekt extends Activity implements RecyclerViewClickListener{
         startResponse();
     }
 
+   /* public void saveData() {
+        try {
+            SQLiteDatabase myDB =
+                    openOrCreateDatabase("my.db", MODE_PRIVATE, null);
+            myDB.close();
+            dataSaver = new DataSaver(myDB, this);
+        } catch (Exception e) {
+            Log.i("myerrorDataSaver:", e.getMessage());
+        }
+    }*/
+
     public void onBackPressedButton(View v) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-   /* public void onButtonStartResponce(View v) {
-        startResponse();
-    }*/
-   @Override
-   public void recyclerViewListClicked(View v, int position, String str){
-       AppNetCom appNetCom = (AppNetCom) getApplication();
-       ((AppNetCom) getApplication()).setStringId(str);
-       Intent intent = new Intent(this, OneObject.class);
-       startActivity(intent);
-   }
+    /* public void onButtonStartResponce(View v) {
+         startResponse();
+     }*/
+    @Override
+    public void recyclerViewListClicked(View v, int position, String str) {
+        AppNetCom appNetCom = (AppNetCom) getApplication();
+        ((AppNetCom) getApplication()).setStringId(str);
+        Intent intent = new Intent(this, OneObject.class);
+        startActivity(intent);
+    }
+
     public void startResponse() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -73,20 +88,17 @@ public class ListObjekt extends Activity implements RecyclerViewClickListener{
         }*/
 
         AppNetCom.getApi().getData().enqueue(new Callback<List<PostModel>>() {
-
             @Override
             public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
                 if (response.body() != null) {
                     posts.addAll(response.body());
                     recyclerView.getAdapter().notifyDataSetChanged();
-
                 } else {
                     okhttp3.Request request;
                     request = call.request();
                     Log.i("qwe", request.toString());
                 }
             }
-
             @Override
             public void onFailure(Call<List<PostModel>> call, Throwable t) {
                 Toast.makeText(ListObjekt.this, "Чет, поломалось...", Toast.LENGTH_SHORT).show();

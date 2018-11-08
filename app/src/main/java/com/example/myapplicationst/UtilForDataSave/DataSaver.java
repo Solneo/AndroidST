@@ -1,17 +1,11 @@
 package com.example.myapplicationst.UtilForDataSave;
 
-import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -27,9 +21,10 @@ public class DataSaver {
         this.myDB = myDB;
         this.context = context;
         er = null;
+
     }
 
-    String[] permissions = new String[]{
+   /* String[] permissions = new String[]{
             Manifest.permission.INTERNET,
             Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -48,11 +43,11 @@ public class DataSaver {
             }
         }
         return true;
-    }
+    }*/
 
-    public void qwe() {
+    public void setData() {
         try {
-            checkPermissions();
+            /*checkPermissions();*/
 
           /*  myDB = SQLiteDatabase.openOrCreateDatabase("my.db", null, context.MODE_PRIVATE, null);*/
            /* myDB.openDatabase("my.db", null, context.MODE_PRIVATE);*/
@@ -66,6 +61,17 @@ public class DataSaver {
             row1.put("price", 1);
 
             myDB.insert("object", null, row1);
+
+
+        } catch (Exception e) {
+            Log.i("myerrorDataSaver", e.getMessage());
+        }
+    }
+
+    public void getData() {
+        try {
+          /*  checkPermissions();*/
+
             Cursor myCursor =
                     myDB.rawQuery("select title, addr, rent_date from object", null);
 
@@ -75,12 +81,10 @@ public class DataSaver {
                 int rent_date = myCursor.getInt(2);
                 Log.i("infoDataSaver:", title);
                /* boolean isSingle = (myCursor.getInt(2)) == 1 ? true : false;*/
-            }
-            myCursor.close();
-            myDB.close();
+                myCursor.close();
 
+            }
         } catch (Exception e) {
-            Log.i("myerrorDataSaver", e.getMessage());
         }
     }
 }

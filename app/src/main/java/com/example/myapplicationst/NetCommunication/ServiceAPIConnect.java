@@ -1,11 +1,10 @@
 package com.example.myapplicationst.NetCommunication;
 
 
-
+import com.example.myapplicationst.NetCommunication.Models.ModelForm;
 import com.example.myapplicationst.NetCommunication.Models.ModelOneObj;
 import com.example.myapplicationst.NetCommunication.Models.ModelPostAsk;
 import com.example.myapplicationst.NetCommunication.Models.PostModel;
-import com.example.myapplicationst.NetCommunication.Models.SubModels.RecuestBody;
 
 import java.util.List;
 import java.util.Map;
@@ -13,9 +12,6 @@ import java.util.Map;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -33,6 +29,8 @@ public interface ServiceAPIConnect {
     @GET("/app/{id}")
     Call<List<ModelOneObj>> getDat(@Path("id") String id);
 
+    @POST("/forpost")
+    Call<List<ModelForm>> getDataF();
     /*@FormUrlEncoded*/
     @Multipart
     @POST("/forpost")

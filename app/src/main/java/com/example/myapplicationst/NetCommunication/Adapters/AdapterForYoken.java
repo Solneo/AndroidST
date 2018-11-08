@@ -6,10 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 import com.example.myapplicationst.NetCommunication.Models.ModelPostAsk;
 import com.example.myapplicationst.R;
 
@@ -19,7 +17,7 @@ import java.util.List;
  * Created by Ыщвф on 25.10.2018.
  */
 
-public class AdapterForYoken extends RecyclerView.Adapter<AdapterForYoken.ViewHolder>{
+public class AdapterForYoken extends RecyclerView.Adapter<AdapterForYoken.ViewHolder> {
     private List<ModelPostAsk> posts;
     private Context context;
 

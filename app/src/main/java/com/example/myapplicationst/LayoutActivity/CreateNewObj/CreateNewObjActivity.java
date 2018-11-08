@@ -2,6 +2,7 @@ package com.example.myapplicationst.LayoutActivity.CreateNewObj;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -22,7 +23,10 @@ import android.widget.Toast;
 
 import com.example.myapplicationst.App.AppNetCom;
 import com.example.myapplicationst.Main.ThemeUtils;
+import com.example.myapplicationst.NetCommunication.Adapters.AdapterForForm;
 import com.example.myapplicationst.NetCommunication.Adapters.AdapterForYoken;
+import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.ProviderToGlob;
+import com.example.myapplicationst.NetCommunication.Models.ModelForm;
 import com.example.myapplicationst.NetCommunication.Models.ModelPostAsk;
 import com.example.myapplicationst.NetCommunication.Models.SubModels.RecuestBody;
 import com.example.myapplicationst.NetCommunication.Models.SubModels.RequestMultiBody;
@@ -48,33 +52,36 @@ import static com.example.myapplicationst.NetCommunication.Models.SubModels.Requ
  * Created by Ыщвф on 24.10.2018.
  */
 
-public class CreateNewObjActivity extends Activity {
+public class CreateNewObjActivity extends Activity implements ProviderToGlob {
     RecyclerView recyclerView;
     List<ModelPostAsk> post;
+    List<ModelForm> postM;
     int PICK_IMAGE = 0;
     private Intent intent = new Intent();
     File IMAGE_FILE;
     DataSaver dataSaver;
+    Context context;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_obj_activity);
         ThemeUtils.onActivityCreateSetTheme(this);
+        startResponseF();
     }
 
     public void GalerySelect(View v) {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_PICK);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
-        saveData();
+        /*saveDataInAct();*/
     }
 
     public boolean isStoragePermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {
-                Log.v(TAG, "Permission is granted");
+                Log.v(TAG, "Permission is granted in act");
                 return true;
             } else {
 
@@ -83,12 +90,12 @@ public class CreateNewObjActivity extends Activity {
                 return false;
             }
         } else { //permission is automatically granted on sdk<23 upon installation
-            Log.v(TAG, "Permission is granted");
+            Log.v(TAG, "Permission is granted sdk<23 in act");
             return true;
         }
     }
 
-    public void saveData() {
+    public void saveDataInAct() {
         try {
             isStoragePermissionGranted();
             DatabaseHelper databaseHelper = new DatabaseHelper(this);
@@ -97,8 +104,11 @@ public class CreateNewObjActivity extends Activity {
                     /*openOrCreateDatabase("my.db", 0x000, null);*/
 
             dataSaver = new DataSaver(myDB, this);
-            dataSaver.qwe();
+            dataSaver.setData();
+            dataSaver.getData();
             myDB.close();
+
+
         } catch (Exception e) {
             Log.i("myerrorDataSaver:", e.getMessage());
         }
@@ -143,11 +153,17 @@ public class CreateNewObjActivity extends Activity {
 
         RequestBody login = createPartFromString(/*mEdtLogin.getText().toString()*/recuestBody.getLogin());
         RequestBody password = createPartFromString(/*mEdtPassword.getText().toString()*/recuestBody.getPassword());
+        RequestBody form_build_id = createPartFromString(AppNetCom.getStringToken());
+        RequestBody form_id = createPartFromString("tm_order_form");
+        String pr = AppNetCom.getStringToken() + " null";
+        Log.i("myerr", pr);
       /*  RequestBody userId = createPartFromString(mUserId + "");*/
 
         HashMap<String, RequestBody> params = new HashMap<>();
         params.put("login", login);
         params.put("password", password);
+        params.put("form_build_id", form_build_id);
+        params.put("form_id", form_id);
         /*RequestBody user_id = params.put("user_id", userId);*/
 
         AppNetCom.getApi().setData(params, body).enqueue(new Callback<List<ModelPostAsk>>() {
@@ -155,15 +171,9 @@ public class CreateNewObjActivity extends Activity {
             public void onResponse(Call<List<ModelPostAsk>> call, Response<List<ModelPostAsk>> response) {
                 if (response.body() != null) {
                     if (response.isSuccessful()) {
-                        if (response.body() != null) {
-                            post.addAll(response.body());
-                            recyclerView.getAdapter().notifyDataSetChanged();
-                            Log.i("qwe", recuestBody.toString());
-                        } else {
-                            okhttp3.Request request;
-                            request = call.request();
-                            Log.i("qwer", request.toString());
-                        }
+                        post.addAll(response.body());
+                        recyclerView.getAdapter().notifyDataSetChanged();
+                        Log.i("myer", recuestBody.toString());
                     } else {
                         Log.i("qwert", response.message());
                     }
@@ -176,6 +186,61 @@ public class CreateNewObjActivity extends Activity {
 
             @Override
             public void onFailure(Call<List<ModelPostAsk>> call, Throwable t) {
+                Toast.makeText(CreateNewObjActivity.this, "Чет, поломалось...", Toast.LENGTH_SHORT).show();
+                Log.i("sdf", t.getMessage());
+                okhttp3.Request request;
+                request = call.request();
+                Log.i("qwe", request.toString());
+            }
+
+        });
+    }
+
+    @Override
+    public void provideGlob(String s) {
+        AppNetCom appNetCom = (AppNetCom) getApplication();
+        Log.i("qwe", s);
+        ((AppNetCom) getApplication()).setStringToken(s);
+    }
+
+    public void startResponseF() {
+        postM = new ArrayList<>();
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_createobj);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        AdapterForForm adapt = new AdapterForForm(postM, this, this);
+        recyclerView.setAdapter(adapt);
+
+        AppNetCom.getApi().getDataF().enqueue(new Callback<List<ModelForm>>() {
+
+            @Override
+            public void onResponse(Call<List<ModelForm>> call, Response<List<ModelForm>> response) {
+                if (response.body() != null) {
+                    if (response.isSuccessful()) {
+                        if (response.body() != null) {
+                            postM.addAll(response.body());
+                            recyclerView.getAdapter().notifyDataSetChanged();
+
+                        } else {
+                            okhttp3.Request request;
+                            request = call.request();
+                            Log.i("qwe", request.toString());
+                        }
+                    } else {
+                        Log.i("qwe", response.message());
+                    }
+                } else {
+                    okhttp3.Request request;
+                    request = call.request();
+                    Log.i("qwe", request.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ModelForm>> call, Throwable t) {
                 Toast.makeText(CreateNewObjActivity.this, "Чет, поломалось...", Toast.LENGTH_SHORT).show();
                 Log.i("sdf", t.getMessage());
                 okhttp3.Request request;

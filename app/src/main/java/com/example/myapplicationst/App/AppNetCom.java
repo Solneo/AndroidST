@@ -20,6 +20,7 @@ public class AppNetCom extends Application {
     private static ServiceAPIConnect serviceAPIConnect;
     private Retrofit retrofit;
     private static String stringId;
+    private static String stringToken;
 
 
     @Override
@@ -40,6 +41,7 @@ public class AppNetCom extends Application {
                 .build();
         serviceAPIConnect = retrofit.create(ServiceAPIConnect.class);
         setStringId("15");
+        setStringToken("null");
 
 
     }
@@ -50,6 +52,14 @@ public class AppNetCom extends Application {
 
     public static String getStringId() {
         return stringId;
+    }
+
+    public void setStringToken(String stringToken) {
+        this.stringToken = stringToken;
+    }
+
+    public static String getStringToken() {
+        return stringToken;
     }
 
     public static ServiceAPIConnect getApi() {

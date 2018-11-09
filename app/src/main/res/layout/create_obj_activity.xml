@@ -26,7 +26,7 @@
             android:id="@+id/button_send"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="startResponseCR"
+            android:onClick="AuthAfter"
             android:text="Send" />
 
         <TextView

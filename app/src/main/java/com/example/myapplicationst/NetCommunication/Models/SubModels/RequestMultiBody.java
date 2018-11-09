@@ -19,6 +19,11 @@ public class RequestMultiBody {
         return RequestBody.create(
                 okhttp3.MultipartBody.FORM, descriptionString);
     }
+
+    /*public static RequestBody createPartFromStringJSON(String descriptionString) {
+        return RequestBody.create(
+                okhttp3..FORM, descriptionString);
+    }*/
     @NonNull
     public static MultipartBody.Part prepareFilePart(Context context, String partName, File file) {
 

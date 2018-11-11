@@ -17,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.myapplicationst.Fragment.BuildingList;
 import com.example.myapplicationst.Fragment.MainList;
 import com.example.myapplicationst.LayoutActivity.CreateNewObj.CreateNewObjActivity;
 import com.example.myapplicationst.LayoutActivity.ListObjekt;
@@ -119,9 +118,9 @@ public class MainActivity extends AppCompatActivity
             goToObjektActivity();
 
         } else if (id == R.id.nav_account) {
-            goToQRReaderActivity();
+            goToLoginActivity();
         } else if (id == R.id.nav_search) {
-            fragmentClass = BuildingList.class;
+            goToObjektActivity();
         } else if (id == R.id.nav_favorites) {
             goToLoginActivity();
         } else if (id == R.id.nav_messages) {

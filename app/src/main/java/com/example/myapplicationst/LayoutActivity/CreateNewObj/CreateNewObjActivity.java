@@ -2,7 +2,6 @@ package com.example.myapplicationst.LayoutActivity.CreateNewObj;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -14,23 +13,17 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.ArrayMap;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.myapplicationst.App.AppNetCom;
+import com.example.myapplicationst.BodyClassForRequest.BodyCreate;
 import com.example.myapplicationst.Main.ThemeUtils;
-import com.example.myapplicationst.NetCommunication.Adapters.AdapterForForm;
-import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.ProviderToGlob;
 import com.example.myapplicationst.NetCommunication.Models.ModelAuth;
-import com.example.myapplicationst.NetCommunication.Models.ModelForm;
-import com.example.myapplicationst.NetCommunication.Models.ModelPostAsk;
-import com.example.myapplicationst.NetCommunication.Models.SubModels.RecuestBody;
-import com.example.myapplicationst.NetCommunication.Models.SubModels.RequestMultiBody;
+import com.example.myapplicationst.NetCommunication.NetUtil.AuthResp;
+import com.example.myapplicationst.NetCommunication.NetUtil.RequestMultiBody;
 import com.example.myapplicationst.R;
 import com.example.myapplicationst.UtilForDataSave.DataSaver;
 import com.example.myapplicationst.UtilForDataSave.DatabaseHelper;
@@ -38,11 +31,7 @@ import com.example.myapplicationst.UtilForDataSave.DatabaseHelper;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.net.CookieManager;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -50,21 +39,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.content.ContentValues.TAG;
-import static com.example.myapplicationst.NetCommunication.Models.SubModels.RequestMultiBody.createPartFromString;
+import static com.example.myapplicationst.NetCommunication.NetUtil.RequestMultiBody.createPartFromString;
 
 /**
  * Created by Ыщвф on 24.10.2018.
  */
 
-public class CreateNewObjActivity extends Activity implements ProviderToGlob {
-    RecyclerView recyclerView;
-    List<ModelPostAsk> post;
-    List<ModelForm> postM;
+public class CreateNewObjActivity extends Activity {
     int PICK_IMAGE = 0;
     private Intent intent = new Intent();
     File IMAGE_FILE;
     DataSaver dataSaver;
-    Context context;
     String token;
     String sessid;
     String session_name;
@@ -74,7 +59,8 @@ public class CreateNewObjActivity extends Activity implements ProviderToGlob {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_obj_activity);
         ThemeUtils.onActivityCreateSetTheme(this);
-        startResponseAuth();
+        AuthResp authResp = new AuthResp(this);
+        authResp.startResponseAuth("root", "111222");
        /* startResponseF();*/
     }
 
@@ -107,16 +93,12 @@ public class CreateNewObjActivity extends Activity implements ProviderToGlob {
         try {
             isStoragePermissionGranted();
             DatabaseHelper databaseHelper = new DatabaseHelper(this);
-
             SQLiteDatabase myDB = databaseHelper.getWritableDatabase();
                     /*openOrCreateDatabase("my.db", 0x000, null);*/
-
             dataSaver = new DataSaver(myDB, this);
             dataSaver.setData();
             dataSaver.getData();
             myDB.close();
-
-
         } catch (Exception e) {
             Log.i("myerrorDataSaver:", e.getMessage());
         }
@@ -138,28 +120,27 @@ public class CreateNewObjActivity extends Activity implements ProviderToGlob {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-
+/*
     public void startResponseAuth() {
         CookieManager cookieManager = new CookieManager();
         cookieManager.getCookieStore().removeAll();
         final RecuestBody recuestBody = new RecuestBody();
-        String LOGIN = "Sod";
-        String PASSWORD = "123456";
+        String LOGIN = "root";
+        String PASSWORD = "111222";
         recuestBody.setPassword("test");
 
         RequestMultiBody requestBody = new RequestMultiBody();
-        File file = IMAGE_FILE; /*new File(Environment.getExternalStorageDirectory(), "picture.jpg");*/
+        File file = IMAGE_FILE; *//*new File(Environment.getExternalStorageDirectory(), "picture.jpg");*//*
 
 
         RequestBody username = createPartFromString(LOGIN);
         RequestBody password = createPartFromString(PASSWORD);
         RequestBody form_build_id = createPartFromString(AppNetCom.getStringToken());
         RequestBody form_id = createPartFromString("tm_order_form");
-        RequestBody title = createPartFromString("qwer");
-        RequestBody field_password = createPartFromString("123456");
+        RequestBody title = createPartFromString("root");
+        RequestBody field_password = createPartFromString("111222");
         String pr = AppNetCom.getStringToken() + " null";
-        Log.i("myerr", pr);
-      /*  RequestBody userId = createPartFromString(mUserId + "");*/
+
 
         HashMap<String, RequestBody> params = new HashMap<>();
         params.put("username", username);
@@ -168,8 +149,8 @@ public class CreateNewObjActivity extends Activity implements ProviderToGlob {
         params.put("form_id", form_id);
         params.put("title", title);
         params.put("field_password", field_password);
-        /*RequestBody user_id = params.put("user_id", userId);*/
-        AppNetCom.getApi().setDataSin(params).enqueue(new Callback<ModelAuth>() {
+        *//*RequestBody user_id = params.put("user_id", userId);*//*
+        AppNetCom.getApi().startAuth(params).enqueue(new Callback<ModelAuth>() {
             @Override
             public void onResponse(Call<ModelAuth> call, Response<ModelAuth> response) {
                 if (response.body() != null) {
@@ -177,6 +158,7 @@ public class CreateNewObjActivity extends Activity implements ProviderToGlob {
                         session_name = response.body().getSession_name();
                         sessid = response.body().getSessid();
                         token = response.body().getToken();
+                       *//* startResponseF();*//*
                     } else {
                         Log.i("qwert", response.message());
                     }
@@ -196,95 +178,67 @@ public class CreateNewObjActivity extends Activity implements ProviderToGlob {
                 Log.i("qwe", request.toString());
             }
         });
-    }
+    }*/
 
-    @Override
-    public void provideGlob(String s) {
-        AppNetCom appNetCom = (AppNetCom) getApplication();
-        Log.i("qwe", s);
-        ((AppNetCom) getApplication()).setStringToken(s);
-    }
 
     public void startResponseF() {
-        postM = new ArrayList<>();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_createobj);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-
-        AdapterForForm adapt = new AdapterForForm(postM, this, this);
-        recyclerView.setAdapter(adapt);
-
-        AppNetCom.getApi().getDataF().enqueue(new Callback<List<ModelForm>>() {
-
+        String cookieStr = AppNetCom.getStringCookie();
+        AppNetCom.getApi().getToken(cookieStr).enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<List<ModelForm>> call, Response<List<ModelForm>> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 if (response.body() != null) {
                     if (response.isSuccessful()) {
-                        postM.addAll(response.body());
-                        recyclerView.getAdapter().notifyDataSetChanged();
+                      /*  token = response.body().toString();*/
                     } else {
-                        Log.i("myerr", response.message());
+                        Log.i("qwert", response.message());
                     }
                 } else {
                     okhttp3.Request request;
                     request = call.request();
-                    Log.i("qwe", request.toString());
+                    Log.i("qwerty", request.toString());
                 }
             }
 
             @Override
-            public void onFailure(Call<List<ModelForm>> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(CreateNewObjActivity.this, "Чет, поломалось...", Toast.LENGTH_SHORT).show();
                 Log.i("sdf", t.getMessage());
                 okhttp3.Request request;
                 request = call.request();
                 Log.i("qwe", request.toString());
             }
-
         });
     }
 
     public void AuthAfter(View v) {
-        Map<String, Object> jsonParams = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
-            jsonParams = new ArrayMap<>();
-        }
-//put something inside the map, could be null
-        String post = new String();
-        post = "post";
-        jsonParams.put("type", post);
-        jsonParams.put("username", "Sod");
-
-
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
-        final RecuestBody recuestBody = new RecuestBody();
-        recuestBody.setLogin("test");
-        recuestBody.setPassword("test");
-        String cookieStr = sessid + "=" + session_name;
-
-        Log.i("myinfo", cookieStr);
         RequestMultiBody requestBody = new RequestMultiBody();
-        File file = IMAGE_FILE; /*new File(Environment.getExternalStorageDirectory(), "picture.jpg");*/
-        RequestBody tokenP = createPartFromString(token);
-        RequestBody sessidP = createPartFromString(sessid);
-        RequestBody session_nameP = createPartFromString(session_name);
-
-/*
         HashMap<String, RequestBody> params = new HashMap<>();
-        params.put("token", tokenP);*/
 
+        String und = new String();
+        und = "und";
 
+        RequestBody type = createPartFromString("article");
+        RequestBody title = createPartFromString("testWithHashMap");
+        RequestBody body = createPartFromString("");
+        params.put("type", type);
+        params.put("title", title);
+        params.put("body", body);
+        JSONObject jsonObject;
+
+       /* jsonParams.put("username", "root");
+        jsonParams.put("password", "111222");*/
+        String cookieStr = AppNetCom.getStringCookie();
+        String tokenG = AppNetCom.getStringToken();
+        File file = IMAGE_FILE; /*new File(Environment.getExternalStorageDirectory(), "picture.jpg");*/
+        BodyCreate b = new BodyCreate("NewTitle", "article", "qwerty");
         /*RequestBody user_id = params.put("user_id", userId);*/
-        AppNetCom.getApi().setDataSinWithCookie(body, cookieStr).enqueue(new Callback<ModelAuth>() {
+        AppNetCom.getApi().setDataToNode(b, cookieStr, tokenG).enqueue(new Callback<ModelAuth>() {
             @Override
             public void onResponse(Call<ModelAuth> call, Response<ModelAuth> response) {
                 if (response.body() != null) {
                     if (response.isSuccessful()) {
-                        session_name = response.body().getSession_name();
-                        sessid = response.body().getSessid();
-                        token = response.body().getToken();
+
                     } else {
                         Log.i("qwert", response.message());
                     }

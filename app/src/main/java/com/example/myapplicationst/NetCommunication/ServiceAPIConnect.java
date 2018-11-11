@@ -1,6 +1,7 @@
 package com.example.myapplicationst.NetCommunication;
 
 
+import com.example.myapplicationst.BodyClassForRequest.BodyCreate;
 import com.example.myapplicationst.NetCommunication.Models.ModelAuth;
 import com.example.myapplicationst.NetCommunication.Models.ModelForm;
 import com.example.myapplicationst.NetCommunication.Models.ModelOneObj;
@@ -27,9 +28,10 @@ import retrofit2.http.Path;
  */
 
 public interface ServiceAPIConnect {
-    @GET("/app")
+    @GET("/?q=rest/node")
     Call<List<PostModel>> getData();
-    @GET("/app/{id}")
+
+    @GET("/?q=rest/node/{id}")
     Call<List<ModelOneObj>> getDat(@Path("id") String id);
 
     @POST("/forpost")
@@ -43,12 +45,17 @@ public interface ServiceAPIConnect {
             @PartMap() Map<String, RequestBody> partMap,
             @Part MultipartBody.Part file
     );
-
     @Multipart
-    @POST("/testapi/user/login")
-    Call<ModelAuth> setDataSin(@PartMap() Map<String, RequestBody> partMap);
+    @POST("/?q=rest/user/login")
+    Call<ModelAuth> startAuth(@PartMap() Map<String, RequestBody> partMap);
 
-    @POST("/testapi/node")
-    Call<ModelAuth> setDataSinWithCookie(@Body RequestBody params, @Header("Cookie") String sessionIdAndToken);
+    @GET("/services/session/token")
+    Call<String> getToken(@Header("Cookie") String sessionIdAndToken);
+
+    @POST("/?q=rest/node")
+    Call<ModelAuth> setDataToNode(@Body BodyCreate b,
+                                  @Header("Cookie") String cookie,
+                                  @Header("X-CSRF-TOKEN") String token);
+
 
 }

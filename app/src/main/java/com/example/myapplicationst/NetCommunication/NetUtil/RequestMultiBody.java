@@ -1,4 +1,4 @@
-package com.example.myapplicationst.NetCommunication.Models.SubModels;
+package com.example.myapplicationst.NetCommunication.NetUtil;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -20,6 +20,11 @@ public class RequestMultiBody {
                 okhttp3.MultipartBody.FORM, descriptionString);
     }
 
+    public static RequestBody createPartFromStringList(String descriptionString) {
+        return RequestBody.create(
+                okhttp3.MultipartBody.FORM, descriptionString);
+
+    }
     /*public static RequestBody createPartFromStringJSON(String descriptionString) {
         return RequestBody.create(
                 okhttp3..FORM, descriptionString);

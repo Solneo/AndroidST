@@ -21,6 +21,8 @@ public class AppNetCom extends Application {
     private Retrofit retrofit;
     private static String stringId;
     private static String stringToken;
+    private static String stringCookie;
+    private static Boolean Auth;
 
 
     @Override
@@ -34,7 +36,7 @@ public class AppNetCom extends Application {
                 .create();
         retrofit = new Retrofit.Builder()
                 /*.baseUrl("https://novorossiysk.33kvartiry.ru")*/
-                .baseUrl("http://betta.iqads.ru")
+                .baseUrl("http://dalen.iqads.ru")
                 /*.baseUrl("http://httpbin.org")*/
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -42,20 +44,37 @@ public class AppNetCom extends Application {
         serviceAPIConnect = retrofit.create(ServiceAPIConnect.class);
         setStringId("15");
         setStringToken("null");
-
-
+        setAuth(false);
+        setStringToken(null);
+        setStringCookie(null);
     }
 
-    public void setStringId(String stringId) {
-        this.stringId = stringId;
+    public static void setStringCookie(String stringCookie) {
+        AppNetCom.stringCookie = stringCookie;
+    }
+
+    public static String getStringCookie() {
+        return stringCookie;
+    }
+
+    public static Boolean getAuth() {
+        return Auth;
+    }
+
+    public static void setAuth(Boolean auth) {
+        Auth = auth;
+    }
+
+    public static void setStringId(String stringId) {
+        AppNetCom.stringId = stringId;
     }
 
     public static String getStringId() {
         return stringId;
     }
 
-    public void setStringToken(String stringToken) {
-        this.stringToken = stringToken;
+    public static void setStringToken(String stringToken) {
+        AppNetCom.stringToken = stringToken;
     }
 
     public static String getStringToken() {

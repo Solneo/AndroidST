@@ -21,13 +21,6 @@
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:scaleType="centerInside"
-        android:src="@mipmap/logoin" />
-
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
@@ -111,7 +104,7 @@
             android:layout_height="66dp"
             android:layout_marginLeft="4dp"
             android:scaleType="centerInside"
-            android:src="@mipmap/kisspngqrcod" />
+            android:src="@mipmap/qr" />
 
         <TextView
 
@@ -126,6 +119,7 @@
 
 
     <TextView
+        android:layout_marginTop="16dp"
         android:id="@+id/text_reg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

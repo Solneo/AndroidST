@@ -1,5 +1,6 @@
 package com.example.myapplicationst.NetCommunication.Models;
 
+import com.example.myapplicationst.NetCommunication.Models.SubModels.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -17,6 +18,18 @@ public class ModelAuth {
     @SerializedName("token")
     @Expose
     private String token;
+
+    @SerializedName("user")
+    @Expose
+    private User user;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
 
     public void setSession_name(String session_name) {
         this.session_name = session_name;

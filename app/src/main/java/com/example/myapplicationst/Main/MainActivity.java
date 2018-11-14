@@ -13,23 +13,29 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.myapplicationst.App.AppNetCom;
 import com.example.myapplicationst.Fragment.MainList;
 import com.example.myapplicationst.LayoutActivity.CreateNewObj.CreateNewObjActivity;
 import com.example.myapplicationst.LayoutActivity.ListObjekt;
 import com.example.myapplicationst.LayoutActivity.LoginActivity;
+import com.example.myapplicationst.LayoutActivity.MyAccountActivity;
 import com.example.myapplicationst.LayoutActivity.OneObject;
 import com.example.myapplicationst.QrReader.BARReader;
 import com.example.myapplicationst.R;
+import com.example.myapplicationst.UtilForDataSave.PrefSaver;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private Fragment fragment = null;
     private Class fragmentClass = null;
+    private PrefSaver prefSaver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +47,6 @@ public class MainActivity extends AppCompatActivity
             setFragmentMenegerAndReplFragment();
             ThemeUtils.onActivityCreateSetTheme(this);
         }
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,6 +61,8 @@ public class MainActivity extends AppCompatActivity
         });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);//Тут происходит инициализация шторки
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -64,7 +71,37 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        authChekAndBind();
         // drawer.openDrawer(GravityCompat.START);//покажем открытую шторку при первом запуске
+    }
+
+    void authChekAndBind() {
+        PrefSaver prefSaver = new PrefSaver(this);
+        UserDataM userDataM = new UserDataM(this);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        TextView textName = (TextView) navigationView.getHeaderView(0).findViewById(R.id.text_main_name);
+        TextView textEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.text_main_email);
+        MenuItem textAccOrLogin = (MenuItem) navigationView.getMenu().findItem(R.id.nav_account);
+
+        if (prefSaver.loadData("auth") != null) {
+            Log.i("myerr", prefSaver.loadData("auth"));
+            textName.setText(userDataM.getUsername());
+            textEmail.setText(userDataM.getEmail());
+            AppNetCom.setAuth(true);
+            AppNetCom.setStringToken(prefSaver.loadData("token"));
+            AppNetCom.setStringCookie(prefSaver.loadData("cookie"));
+            textAccOrLogin.setTitle("Мой аккаунт");
+        } else {
+            textAccOrLogin.setTitle("Вход или авторизация");
+            textName.setText("Неавторизованный пользователь");
+            textEmail.setText("nothing@mail.com");
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        authChekAndBind();
     }
 
     @Override
@@ -118,9 +155,15 @@ public class MainActivity extends AppCompatActivity
             goToObjektActivity();
 
         } else if (id == R.id.nav_account) {
-            goToLoginActivity();
+            if (AppNetCom.getAuth()) {
+                goToAccauntActivity();
+            } else {
+                goToLoginActivity();
+            }
+
         } else if (id == R.id.nav_search) {
             goToObjektActivity();
+
         } else if (id == R.id.nav_favorites) {
             goToLoginActivity();
         } else if (id == R.id.nav_messages) {
@@ -156,6 +199,11 @@ public class MainActivity extends AppCompatActivity
 
     public void goToNewActivity(View v) {
         Intent intent = new Intent(this, ListObjekt.class);
+        startActivity(intent);
+    }
+
+    public void goToAccauntActivity() {
+        Intent intent = new Intent(this, MyAccountActivity.class);
         startActivity(intent);
     }
 

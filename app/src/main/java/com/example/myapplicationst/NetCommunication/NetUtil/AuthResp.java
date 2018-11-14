@@ -27,11 +27,16 @@ public class AuthResp {
     String session_name;
     Context context;
 
+
     public AuthResp(Context context) {
         this.context = context;
     }
 
-    public void startResponseAuth(String loginG, String passwordG) {
+    private static int qwe(int i) {
+        return i;
+    }
+
+    public int startResponseAuth(String loginG, String passwordG) {
         CookieManager cookieManager = new CookieManager();
         cookieManager.getCookieStore().removeAll();
         final RecuestBody recuestBody = new RecuestBody();
@@ -47,23 +52,30 @@ public class AuthResp {
         params.put("username", username);
         params.put("password", password);
 
+
+
+
         /*RequestBody user_id = params.put("user_id", userId);*/
         AppNetCom.getApi().startAuth(params).enqueue(new Callback<ModelAuth>() {
             @Override
             public void onResponse(Call<ModelAuth> call, Response<ModelAuth> response) {
                 if (response.body() != null) {
                     if (response.isSuccessful()) {
+
                         session_name = response.body().getSession_name();
                         sessid = response.body().getSessid();
                         AppNetCom.setStringCookie(session_name + "=" + sessid);
                         AppNetCom.setStringToken(response.body().getToken());
+
                     } else {
                         Log.i("qwert", response.message());
+
                     }
                 } else {
                     okhttp3.Request request;
                     request = call.request();
                     Log.i("qwerty", request.toString());
+
                 }
             }
 
@@ -74,7 +86,9 @@ public class AuthResp {
                 okhttp3.Request request;
                 request = call.request();
                 Log.i("qwe", request.toString());
+                qwe(1);
             }
         });
+        return 0;
     }
 }

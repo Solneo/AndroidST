@@ -22,7 +22,6 @@ import com.example.myapplicationst.App.AppNetCom;
 import com.example.myapplicationst.BodyClassForRequest.BodyCreate;
 import com.example.myapplicationst.Main.ThemeUtils;
 import com.example.myapplicationst.NetCommunication.Models.ModelAuth;
-import com.example.myapplicationst.NetCommunication.NetUtil.AuthResp;
 import com.example.myapplicationst.NetCommunication.NetUtil.RequestMultiBody;
 import com.example.myapplicationst.R;
 import com.example.myapplicationst.UtilForDataSave.DataSaver;
@@ -50,17 +49,13 @@ public class CreateNewObjActivity extends Activity {
     private Intent intent = new Intent();
     File IMAGE_FILE;
     DataSaver dataSaver;
-    String token;
-    String sessid;
-    String session_name;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_obj_activity);
         ThemeUtils.onActivityCreateSetTheme(this);
-        AuthResp authResp = new AuthResp(this);
-        authResp.startResponseAuth("root", "111222");
+
        /* startResponseF();*/
     }
 
@@ -180,6 +175,7 @@ public class CreateNewObjActivity extends Activity {
         });
     }*/
 
+/*
 
     public void startResponseF() {
 
@@ -189,7 +185,9 @@ public class CreateNewObjActivity extends Activity {
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.body() != null) {
                     if (response.isSuccessful()) {
-                      /*  token = response.body().toString();*/
+                      */
+/*  token = response.body().toString();*//*
+
                     } else {
                         Log.i("qwert", response.message());
                     }
@@ -210,6 +208,7 @@ public class CreateNewObjActivity extends Activity {
             }
         });
     }
+*/
 
     public void AuthAfter(View v) {
         RequestMultiBody requestBody = new RequestMultiBody();
@@ -220,10 +219,10 @@ public class CreateNewObjActivity extends Activity {
 
         RequestBody type = createPartFromString("article");
         RequestBody title = createPartFromString("testWithHashMap");
-        RequestBody body = createPartFromString("");
+        RequestBody body = createPartFromString("Body body body");
         params.put("type", type);
         params.put("title", title);
-        params.put("body", body);
+        params.put("body[und][0][value]", body);
         JSONObject jsonObject;
 
        /* jsonParams.put("username", "root");
@@ -233,7 +232,7 @@ public class CreateNewObjActivity extends Activity {
         File file = IMAGE_FILE; /*new File(Environment.getExternalStorageDirectory(), "picture.jpg");*/
         BodyCreate b = new BodyCreate("NewTitle", "article", "qwerty");
         /*RequestBody user_id = params.put("user_id", userId);*/
-        AppNetCom.getApi().setDataToNode(b, cookieStr, tokenG).enqueue(new Callback<ModelAuth>() {
+        AppNetCom.getApi().setDataToNode(params, cookieStr, tokenG).enqueue(new Callback<ModelAuth>() {
             @Override
             public void onResponse(Call<ModelAuth> call, Response<ModelAuth> response) {
                 if (response.body() != null) {

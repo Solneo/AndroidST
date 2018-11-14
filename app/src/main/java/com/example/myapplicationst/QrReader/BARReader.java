@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -30,6 +31,8 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+
+import static android.content.ContentValues.TAG;
 
 public class BARReader extends AppCompatActivity {
     private static final String LOG_TAG = "Barcode Scanner API";
@@ -67,6 +70,7 @@ public class BARReader extends AppCompatActivity {
             scanResults.setText("Could not set up the detector!");
             return;
         }
+        StoragePermissionGranted();
     }
 
     @Override
@@ -79,6 +83,15 @@ public class BARReader extends AppCompatActivity {
                 } else {
                     Toast.makeText(BARReader.this, "Permission Denied!", Toast.LENGTH_SHORT).show();
                 }
+            case 1:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Button button = (Button) findViewById(R.id.button);
+                    button.setEnabled(true);
+                    Log.i("msg", "qwee");
+                } else {
+                    Toast.makeText(BARReader.this, "Permission Denied!", Toast.LENGTH_SHORT).show();
+                }
+
         }
     }
 
@@ -153,7 +166,26 @@ public class BARReader extends AppCompatActivity {
         }
     }
 
+    public void StoragePermissionGranted() {
+        Button button = (Button) findViewById(R.id.button);
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(Manifest.permission.CAMERA)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG, "Permission is granted in act");
+                button.setEnabled(true);
+            } else {
+                Log.v(TAG, "Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
+                button.setEnabled(false);
+            }
+        } else { //permission is automatically granted on sdk<23 upon installation
+            Log.v(TAG, "Permission is granted sdk<23 in act");
+            button.setEnabled(true);
+        }
+    }
+
     private void takePicture() {
+
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File photo = new File(Environment.getExternalStorageDirectory(), "picture.jpg");
         imageUri = FileProvider.getUriForFile(BARReader.this,

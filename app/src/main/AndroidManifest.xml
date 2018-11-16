@@ -54,6 +54,18 @@
         <activity android:name=".LayoutActivity.CreateNewObj.CreateNewObjActivity" />
         <activity android:name=".LayoutActivity.RegActivity" />
         <activity android:name=".LayoutActivity.MyAccountActivity" />
+        <activity android:name=".LayoutActivity.SearchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <provider
+            android:name=".LastSearching"
+            android:authorities="com.example.myapplicationst" />
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"

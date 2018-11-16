@@ -12,17 +12,19 @@ public class ModelOneObj {
     @SerializedName("title")
     @Expose
     private String titleObj;
-
+    @SerializedName("field_addresss")
+    @Expose
     private String addr;
+    @SerializedName("field_rent_date")
+    @Expose
     private String rent_date;
+    @SerializedName("field_price")
+    @Expose
     private String price;
-    /* @SerializedName("images")
-     @Expose
-     private Images images;*/
-    @SerializedName("images")
+    @SerializedName("field_photo")
     @Expose
     private Images[] imagesList;
-    @SerializedName("убыв.")
+    @SerializedName("field_desc")
     @Expose
     private String bigText;
 

@@ -1,6 +1,7 @@
 package com.example.myapplicationst.NetCommunication;
 
 
+import com.example.myapplicationst.NetCommunication.Models.ModelAccUser;
 import com.example.myapplicationst.NetCommunication.Models.ModelAuth;
 import com.example.myapplicationst.NetCommunication.Models.ModelForm;
 import com.example.myapplicationst.NetCommunication.Models.ModelOneObj;
@@ -23,11 +24,16 @@ import retrofit2.http.Path;
  */
 
 public interface ServiceAPIConnect {
-    @GET("/?q=rest/node")
+    @GET("/jsonapartment")
     Call<List<PostModel>> getData();
 
-    @GET("/?q=rest/node/{id}")
+    @GET("/jsonapartment/{id}")
     Call<List<ModelOneObj>> getDat(@Path("id") String id);
+
+    @GET("/rest/user/{id}")
+    Call<ModelAccUser> getUserData(@Path("id") String id,
+                                   @Header("Cookie") String cookie,
+                                   @Header("X-CSRF-TOKEN") String token);
 
 
     @POST("/forpost")
@@ -47,11 +53,11 @@ public interface ServiceAPIConnect {
     );
 */
     @Multipart
-    @POST("/?q=rest/user/login")
+    @POST("/rest/user/login")
     Call<ModelAuth> startAuth(@PartMap() Map<String, RequestBody> partMap);
 
     @Multipart
-    @POST("/?q=rest/node")
+    @POST("/rest/node")
     Call<ModelAuth> setDataToNode(@PartMap() Map<String, RequestBody> partMap,
                                   @Header("Cookie") String cookie,
                                   @Header("X-CSRF-TOKEN") String token);

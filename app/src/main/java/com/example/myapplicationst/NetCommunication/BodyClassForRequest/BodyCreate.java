@@ -1,4 +1,4 @@
-package com.example.myapplicationst.BodyClassForRequest;
+package com.example.myapplicationst.NetCommunication.BodyClassForRequest;
 
 /**
  * Created by Ыщвф on 10.11.2018.

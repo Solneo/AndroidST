@@ -158,6 +158,7 @@ public class LoginActivity extends Activity {
                         User user = response.body().getUser();
                         prefSaver.saveData("username", user.getName());
                         prefSaver.saveData("email", user.getMail());
+                        prefSaver.saveData("uid", user.getUid());
                         onLoginSuccess();
                         progressDialog.dismiss();
 

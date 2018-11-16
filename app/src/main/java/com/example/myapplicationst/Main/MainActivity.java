@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplicationst.App.AppNetCom;
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         TextView textName = (TextView) navigationView.getHeaderView(0).findViewById(R.id.text_main_name);
         TextView textEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.text_main_email);
+        ImageView imageAvatar = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.image_avatar);
         MenuItem textAccOrLogin = (MenuItem) navigationView.getMenu().findItem(R.id.nav_account);
 
         if (prefSaver.loadData("auth") != null) {
@@ -91,11 +94,19 @@ public class MainActivity extends AppCompatActivity
             AppNetCom.setStringToken(prefSaver.loadData("token"));
             AppNetCom.setStringCookie(prefSaver.loadData("cookie"));
             textAccOrLogin.setTitle("Мой аккаунт");
+            setAva(imageAvatar, userDataM.getUsername());
         } else {
             textAccOrLogin.setTitle("Вход или авторизация");
             textName.setText("Неавторизованный пользователь");
             textEmail.setText("nothing@mail.com");
         }
+    }
+
+    void setAva(ImageView v, String s) {
+        int COVER_IMAGE_SIZE = 200; //in pixels
+        LetterBitmap letterBitmap = new LetterBitmap(this);
+        Bitmap letterTile = letterBitmap.getLetterTile(s, s, COVER_IMAGE_SIZE, COVER_IMAGE_SIZE);
+        v.setImageBitmap(letterTile);
     }
 
     @Override
@@ -112,6 +123,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+
     }
 
     @Override

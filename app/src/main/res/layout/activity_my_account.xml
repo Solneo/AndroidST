@@ -10,14 +10,14 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/image_user_ava"
             android:layout_width="94dp"
             android:layout_height="94dp"
             android:layout_margin="8dp"
             app:srcCompat="@mipmap/ic_launcher_round" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/user_name_inacc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Drupal"
@@ -26,7 +26,7 @@
             android:layout_marginLeft="8dp" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/user_mail_inacc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="drupal@example.com"
@@ -34,12 +34,32 @@
             android:textColor="#444"
             android:layout_marginLeft="8dp" />
 
-        <Button
-            android:id="@+id/button3"
+        <TextView
+            android:id="@+id/user_timezone_inacc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Выйти из аккаунта"
-            android:onClick="logOut" />
+            android:text="drupal@example.com"
+            android:textSize="18dp"
+            android:textColor="#444"
+            android:layout_marginLeft="8dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_background"
+                android:layout_marginRight="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="12dp"
+                android:onClick="logOut"
+                android:text="Выйти из аккаунта" />
+        </RelativeLayout>
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
-import com.example.myapplicationst.NetCommunication.Models.PostModel;
 import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.RecyclerViewClickListener;
+import com.example.myapplicationst.NetCommunication.Models.PostModel;
+import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 import com.example.myapplicationst.R;
 import com.squareup.picasso.Picasso;
 
@@ -42,7 +42,7 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
     @NonNull
     @Override
     public AdapterResponse.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_for_list_object, parent, false);
         v.setVisibility(View.VISIBLE);
         return new ViewHolder(v);
     }

@@ -21,7 +21,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.example.myapplicationst.R;
 
 import java.io.File;
@@ -109,7 +108,7 @@ public class ImagePickUpUtil {
      * @return
      */
     private static ArrayAdapter<ResolveInfo> buildAdapter(final Context context, final List<ResolveInfo> activitiesInfo) {
-        return new ArrayAdapter<ResolveInfo>(context, R.layout.create_obj_activity, R.id.title, activitiesInfo) {
+        return new ArrayAdapter<ResolveInfo>(context, R.layout.activity_create_obj, R.id.title, activitiesInfo) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);

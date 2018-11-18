@@ -14,12 +14,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.myapplicationst.App.AppNetCom;
-import com.example.myapplicationst.Main.ThemeUtils;
-import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.FrInerf;
 import com.example.myapplicationst.Main.MainActivity;
+import com.example.myapplicationst.Main.ThemeUtils;
 import com.example.myapplicationst.NetCommunication.Adapters.AdapterForOneObj;
-import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
+import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.FrInerf;
 import com.example.myapplicationst.NetCommunication.Models.ModelOneObj;
+import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 import com.example.myapplicationst.R;
 import com.example.myapplicationst.Slider.Slider;
 
@@ -48,7 +48,7 @@ public class OneObject extends FragmentActivity implements FrInerf {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.one_object_activity);
+        setContentView(R.layout.activity_one_object);
         ThemeUtils.onActivityCreateSetTheme(this);
         /*HandlerThread handlerThread = new HandlerThread("MyHandlerThread");
         handlerThread.start();

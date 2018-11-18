@@ -41,7 +41,9 @@
         <activity
             android:name=".Main.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|keyboardHidden">
+            <!--android:configChanges="orientation|keyboardHidden"-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,12 +51,24 @@
             </intent-filter>
         </activity>
         <activity android:name=".LayoutActivity.OneObject" />
-        <activity android:name=".LayoutActivity.ListObjekt" />
-        <activity android:name=".QrReader.BARReader" />
-        <activity android:name=".LayoutActivity.CreateNewObj.CreateNewObjActivity" />
-        <activity android:name=".LayoutActivity.RegActivity" />
-        <activity android:name=".LayoutActivity.MyAccountActivity" />
-        <activity android:name=".LayoutActivity.SearchActivity">
+        <activity
+            android:name=".LayoutActivity.ListObjekt"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".QrReader.BARReader"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".LayoutActivity.CreateNewObj.CreateNewObjActivity"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".LayoutActivity.RegActivity"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".LayoutActivity.MyAccountActivity"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".LayoutActivity.SearchActivity"
+            android:configChanges="orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -78,9 +92,10 @@
 
         <activity
             android:name=".LayoutActivity.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"></activity>
         <activity
             android:name=".Settings.SettingsActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_settings"></activity>
     </application>
 

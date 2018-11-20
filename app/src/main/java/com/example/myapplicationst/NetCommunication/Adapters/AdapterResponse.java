@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplicationst.Main.ThemeChUt;
 import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.RecyclerViewClickListener;
 import com.example.myapplicationst.NetCommunication.Models.PostModel;
 import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
@@ -27,11 +28,13 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
     private List<Images> img;
     private Context context;
     private static RecyclerViewClickListener itemListener;
+    ThemeChUt themeChUt;
 
     public AdapterResponse(List<PostModel> posts, Context context, RecyclerViewClickListener itemListener) {
         this.posts = posts;
         this.context = context;
         this.itemListener = itemListener;
+        themeChUt = new ThemeChUt();
     }
 
     public void recyclerViewListClicked(View v, int position, String str) {
@@ -57,9 +60,10 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
         }else {
             holder.post.setText(Html.fromHtml(postModel.getElementPureHtml()));
         }*/
+
         holder.addr.setText(postModel.getAddr());
         holder.sdacha.setText("Сдача в " + postModel.getRent_date());
-        holder.post.setText(postModel.getPrice() + " руб/м. кв.");
+        holder.post.setText(postModel.getPrice() + " \u20BD");
         holder.site.setText(postModel.getTitle());
         holder.str = postModel.getobjId();
 
@@ -81,6 +85,7 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
         ImageView prev;
         TextView sdacha;
         TextView addr;
+        android.support.v7.widget.CardView card;
         String str;
 
         @Override
@@ -97,7 +102,13 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
             prev = (ImageView) v.findViewById(R.id.image_pre);
             sdacha = (TextView) v.findViewById(R.id.sdacha);
             addr = (TextView) v.findViewById(R.id.addr);
+            card = (android.support.v7.widget.CardView) v.findViewById(R.id.card_view);
 
+            themeChUt.setMyThemeToRecItem(card);
+            themeChUt.setMyThemeToTextView(addr);
+            themeChUt.setMyThemeToTextView(sdacha);
+            themeChUt.setMyThemeToTextView(post, "");
+            themeChUt.setMyThemeToTextView(site, "");
 
         }
     }

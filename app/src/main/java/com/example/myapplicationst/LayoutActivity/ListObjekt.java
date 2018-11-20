@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.myapplicationst.App.AppNetCom;
 import com.example.myapplicationst.Main.MainActivity;
+import com.example.myapplicationst.Main.ThemeChUt;
 import com.example.myapplicationst.Main.ThemeUtils;
 import com.example.myapplicationst.NetCommunication.Adapters.AdapterResponse;
 import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.RecyclerViewClickListener;
@@ -37,12 +38,14 @@ public class ListObjekt extends Activity implements RecyclerViewClickListener {
     AdapterResponse adapter;
     Context context;
     DataSaver dataSaver;
+    ThemeChUt themeChUt;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_objekt);
         ThemeUtils.onActivityCreateSetTheme(this);
+        themeChUt = new ThemeChUt();
         startResponse();
     }
 
@@ -56,7 +59,9 @@ public class ListObjekt extends Activity implements RecyclerViewClickListener {
             Log.i("myerrorDataSaver:", e.getMessage());
         }
     }*/
+   private void bindItem() {
 
+   }
     public void onBackPressedButton(View v) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -73,14 +78,17 @@ public class ListObjekt extends Activity implements RecyclerViewClickListener {
         startActivity(intent);
     }
 
+
     public void startResponse() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
+        themeChUt.setMyThemeToRec(recyclerView);
         adapter = new AdapterResponse(posts, context, this);
         recyclerView.setAdapter(adapter);
+
       /*  try {
             Response response = AppNetCom.getApi().getData("app",50).execute();
         } catch (Exception e) {
@@ -99,6 +107,7 @@ public class ListObjekt extends Activity implements RecyclerViewClickListener {
                     Log.i("qwe", request.toString());
                 }
             }
+
             @Override
             public void onFailure(Call<List<PostModel>> call, Throwable t) {
                 Toast.makeText(ListObjekt.this, "Чет, поломалось...", Toast.LENGTH_SHORT).show();

@@ -3,6 +3,7 @@ package com.example.myapplicationst.Main;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ import com.example.myapplicationst.LayoutActivity.CreateNewObj.CreateNewObjActiv
 import com.example.myapplicationst.LayoutActivity.ListObjekt;
 import com.example.myapplicationst.LayoutActivity.LoginActivity;
 import com.example.myapplicationst.LayoutActivity.MyAccountActivity;
-import com.example.myapplicationst.LayoutActivity.OneObject;
+import com.example.myapplicationst.LayoutActivity.SearchActivity;
 import com.example.myapplicationst.QrReader.BARReader;
 import com.example.myapplicationst.R;
 import com.example.myapplicationst.UtilForDataSave.PrefSaver;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     private Fragment fragment = null;
     private Class fragmentClass = null;
     private PrefSaver prefSaver;
+    private ThemeChUt themeChUt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,11 @@ public class MainActivity extends AppCompatActivity
         // drawer.openDrawer(GravityCompat.START);//покажем открытую шторку при первом запуске
     }
 
+    private void changeTheme() {
+        themeChUt = new ThemeChUt();
+
+    }
+
     void authChekAndBind() {
         PrefSaver prefSaver = new PrefSaver(this);
         UserDataM userDataM = new UserDataM(this);
@@ -85,7 +92,9 @@ public class MainActivity extends AppCompatActivity
         TextView textEmail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.text_main_email);
         ImageView imageAvatar = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.image_avatar);
         MenuItem textAccOrLogin = (MenuItem) navigationView.getMenu().findItem(R.id.nav_account);
-
+       /* ImageView ico = findViewById(R.id.ic)
+        imgshare = (Imageview) findviewbyId(R.id.imageshare);
+        imgshare.setColorFilter(color);*///TODO сделать темы темную и светлую, ф здесь иконку менять
         if (prefSaver.loadData("auth") != null) {
             Log.i("myerr", prefSaver.loadData("auth"));
             textName.setText(userDataM.getUsername());
@@ -102,7 +111,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    void setAva(ImageView v, String s) {
+    private void setAva(ImageView v, String s) {
         int COVER_IMAGE_SIZE = 200; //in pixels
         LetterBitmap letterBitmap = new LetterBitmap(this);
         Bitmap letterTile = letterBitmap.getLetterTile(s, s, COVER_IMAGE_SIZE, COVER_IMAGE_SIZE);
@@ -163,25 +172,23 @@ public class MainActivity extends AppCompatActivity
             // Действие при нажатии на иконку камеры импорт
             fragmentClass = MainList.class;
 
-        } else if (id == R.id.nav_object) {
-            goToObjektActivity();
+        } else if (id == R.id.nav_object_list) {
+            goToActivity(this, ListObjekt.class);
 
         } else if (id == R.id.nav_account) {
             if (AppNetCom.getAuth()) {
-                goToAccauntActivity();
+                goToActivity(this, MyAccountActivity.class);
             } else {
-                goToLoginActivity();
+                goToActivity(this, LoginActivity.class);
             }
-
         } else if (id == R.id.nav_search) {
-            goToObjektActivity();
-
+            goToActivity(this, SearchActivity.class);
         } else if (id == R.id.nav_favorites) {
-            goToLoginActivity();
+            goToActivity(this, ListObjekt.class);
         } else if (id == R.id.nav_messages) {
-            goToOneObject();
+            goToActivity(this, CreateNewObjActivity.class);
         } else if (id == R.id.nav_setting) {
-            goToSettings();
+            goToActivity(this, CreateNewObjActivity.class);
         }
         setFragment();
         fragmentItemDr();
@@ -199,43 +206,18 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void setFragmentMenegerAndReplFragment() {
+    private void setFragmentMenegerAndReplFragment() {
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
     }
 
-    public void fragmentItemDr() {
+    private void fragmentItemDr() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
 
-    public void goToNewActivity(View v) {
-        Intent intent = new Intent(this, ListObjekt.class);
-        startActivity(intent);
-    }
-
-    public void goToAccauntActivity() {
-        Intent intent = new Intent(this, MyAccountActivity.class);
-        startActivity(intent);
-    }
-
-    public void goToSettings() {
-        Intent intent = new Intent(this, CreateNewObjActivity.class);
-        startActivity(intent);
-    }
-
-    public void goToObjektActivity() {
-        Intent intent = new Intent(this, ListObjekt.class);
-        startActivity(intent);
-    }
-
-    public void goToOneObject() {
-        Intent intent = new Intent(this, OneObject.class);
-        startActivity(intent);
-    }
-
-    public void goToLoginActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
+    private void goToActivity(Context context, Class clas) {
+        Intent intent = new Intent(context, clas);
         startActivity(intent);
     }
 
@@ -244,10 +226,6 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    public void goToQRReaderActivity() {
-        Intent intent = new Intent(this, BARReader.class);
-        startActivity(intent);
-    }
 
     public void setDarckTheme(View v) {
         ThemeUtils.changeToTheme(this, 0);

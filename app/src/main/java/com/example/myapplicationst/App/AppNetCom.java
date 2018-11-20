@@ -23,6 +23,7 @@ public class AppNetCom extends Application {
     private static String stringToken;
     private static String stringCookie;
     private static Boolean Auth;
+    private static String myTheme;
 
 
     @Override
@@ -47,6 +48,16 @@ public class AppNetCom extends Application {
         setAuth(false);
         setStringToken(null);
         setStringCookie(null);
+        setMyTheme("Dark");
+    }
+
+    public static void setMyTheme(String myTheme) {
+        AppNetCom.myTheme = myTheme;
+    }
+
+
+    public static String getMyTheme() {
+        return myTheme;
     }
 
     public static void setStringCookie(String stringCookie) {

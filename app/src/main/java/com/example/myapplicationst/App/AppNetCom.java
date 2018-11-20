@@ -48,7 +48,7 @@ public class AppNetCom extends Application {
         setAuth(false);
         setStringToken(null);
         setStringCookie(null);
-        setMyTheme("Dark");
+        setMyTheme("");
     }
 
     public static void setMyTheme(String myTheme) {

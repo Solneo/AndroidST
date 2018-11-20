@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);//Тут происходит инициализация шторки
 
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -95,6 +94,8 @@ public class MainActivity extends AppCompatActivity
        /* ImageView ico = findViewById(R.id.ic)
         imgshare = (Imageview) findviewbyId(R.id.imageshare);
         imgshare.setColorFilter(color);*///TODO сделать темы темную и светлую, ф здесь иконку менять
+        prefSaver.saveData("Theme", "Dark");
+        AppNetCom.setMyTheme(prefSaver.loadData("Theme"));
         if (prefSaver.loadData("auth") != null) {
             Log.i("myerr", prefSaver.loadData("auth"));
             textName.setText(userDataM.getUsername());
@@ -219,6 +220,7 @@ public class MainActivity extends AppCompatActivity
     private void goToActivity(Context context, Class clas) {
         Intent intent = new Intent(context, clas);
         startActivity(intent);
+        overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
     }
 
     public void goToQRReaderActivity(View v) {

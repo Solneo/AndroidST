@@ -38,11 +38,11 @@
 
             <ImageView
                 android:id="@+id/image_pre"
-                android:layout_width="146dp"
+                android:layout_width="match_parent"
                 android:layout_height="146dp"
                 android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="-10dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:adjustViewBounds="true"
                 android:focusableInTouchMode="true"
                 android:padding="0dp"
@@ -57,8 +57,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/image_pre"
-                android:layout_toRightOf="@+id/image_pre"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/image_pre"
+
                 android:orientation="vertical">
 
                 <TextView
@@ -115,6 +117,7 @@
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
                     android:paddingTop="4dp"
+                    android:layout_marginBottom="6dp"
                     android:text="TextView"
                     android:textSize="11dp" />
 

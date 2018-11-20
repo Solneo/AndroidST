@@ -29,7 +29,7 @@ public class ThemeChUt {
                 v.setCardBackgroundColor(0xFF323232);
                 break;
             default:
-                v.setBackgroundColor(0xFFC0C0C0);
+                v.setCardBackgroundColor(0xFFC0C0C0);
                 break;
         }
     }

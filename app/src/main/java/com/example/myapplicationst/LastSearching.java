@@ -7,7 +7,7 @@ import android.content.SearchRecentSuggestionsProvider;
  */
 
 public class LastSearching extends SearchRecentSuggestionsProvider {
-    public final static String AUTHORITY = "ru.phpnick.MySuggestionProvider";
+    public final static String AUTHORITY = "com.example.myapplicationst.LastSearching";
     public final static int MODE = DATABASE_MODE_QUERIES;
 
     public LastSearching() {

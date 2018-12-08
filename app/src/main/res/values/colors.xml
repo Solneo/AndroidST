@@ -3,5 +3,18 @@
     <color name="colorPrimary">#202040</color>
     <color name="colorPrimaryDark">#101020</color>
     <color name="colorAccent">#b93</color>
-    <color name="colorDarkWhite">#ddd</color>
+
+    <color name="colorDarkWindow">#333</color>
+    <color name="textColorPrimaryDark">#ddd</color>
+    <color name="textColorSecondaryDark">#b1b1b1</color>
+    <color name="primary_material_dark_1">#263238</color>
+    <color name="primary_dark_material_dark_1">#131619</color>
+    <color name="accent_material_dark_1">#3365bf</color>
+
+    <color name="colorLightWindow">#fafafa</color>
+    <color name="textColorPrimaryLight">#212121</color>
+    <color name="textColorSecondaryLight">#363636</color>
+    <color name="primary_material_light_1">#0178D6</color>
+    <color name="primary_dark_material_light_1">#015192</color>
+    <color name="accent_material_light_1">#448aff</color>
 </resources>

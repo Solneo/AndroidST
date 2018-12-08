@@ -5,14 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
 
 import com.example.myapplicationst.LastSearching;
 import com.example.myapplicationst.R;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
 /**
  * Created by Ыщвф on 16.11.2018.
@@ -23,11 +25,32 @@ public class SearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.myThemeLight);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_building_list);
-        qwe();
+        textView = findViewById(R.id.textView5);
+        handleIntent(getIntent());
+        Log.i("myinfo", "create");
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+
+        handleIntent(intent);
+        super.onNewIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            textView.setText(query);
+
+            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                    LastSearching.AUTHORITY, LastSearching.MODE);
+            suggestions.saveRecentQuery(query, null);
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_bar, menu);
@@ -40,7 +63,7 @@ public class SearchActivity extends AppCompatActivity {
 
     public void qwe() {
         Intent intent = getIntent();
-        textView = findViewById(R.id.textView5);
+
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             textView.setText(query);

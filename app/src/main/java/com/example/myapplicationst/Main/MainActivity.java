@@ -7,14 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,6 +24,15 @@ import com.example.myapplicationst.LayoutActivity.SearchActivity;
 import com.example.myapplicationst.QrReader.BARReader;
 import com.example.myapplicationst.R;
 import com.example.myapplicationst.UtilForDataSave.PrefSaver;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 
 public class MainActivity extends AppCompatActivity
@@ -41,17 +42,18 @@ public class MainActivity extends AppCompatActivity
     private PrefSaver prefSaver;
     private ThemeChUt themeChUt;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.myThemeLight_NoBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (fragmentClass == null) {
             fragmentClass = MainList.class;
             setFragment();
             setFragmentMenegerAndReplFragment();
-            ThemeUtils.onActivityCreateSetTheme(this);
         }
-
+        AppNetCom.setMyTheme(R.style.myThemeLight);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 Snackbar.make(view, "Псс, оно не работает", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -73,14 +77,19 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        themeChUt = new ThemeChUt();
         authChekAndBind();
+
         // drawer.openDrawer(GravityCompat.START);//покажем открытую шторку при первом запуске
     }
 
     private void changeTheme() {
-        themeChUt = new ThemeChUt();
-
+        if (AppNetCom.getMyTheme() != R.style.myThemeLight) {
+            AppNetCom.setMyTheme(R.style.myThemeLight);
+        } else {
+            AppNetCom.setMyTheme(R.style.myThemeDark);
+        }
+        recreate();
     }
 
     void authChekAndBind() {
@@ -93,11 +102,11 @@ public class MainActivity extends AppCompatActivity
         MenuItem textAccOrLogin = (MenuItem) navigationView.getMenu().findItem(R.id.nav_account);
        /* ImageView ico = findViewById(R.id.ic)
         imgshare = (Imageview) findviewbyId(R.id.imageshare);
-        imgshare.setColorFilter(color);*///TODO сделать темы темную и светлую, ф здесь иконку менять
-        prefSaver.saveData("Theme", "Dark");
-        AppNetCom.setMyTheme(prefSaver.loadData("Theme"));
+        imgshare.setColorFilter(color);*/
+       /* prefSaver.saveData("Theme", 0);
+        AppNetCom.setMyTheme(prefSaver.loadData("Theme"));*/
         if (prefSaver.loadData("auth") != null) {
-            Log.i("myerr", prefSaver.loadData("auth"));
+            Log.i("myInfoNonAuth", prefSaver.loadData("auth"));
             textName.setText(userDataM.getUsername());
             textEmail.setText(userDataM.getEmail());
             AppNetCom.setAuth(true);
@@ -185,9 +194,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_search) {
             goToActivity(this, SearchActivity.class);
         } else if (id == R.id.nav_favorites) {
-            goToActivity(this, ListObjekt.class);
-        } else if (id == R.id.nav_messages) {
-            goToActivity(this, CreateNewObjActivity.class);
+            goToActivity(this, TestSintez.class);
+            /*} else if (id == R.id.nav_messages) {*/
+            /* goToActivity(this, CreateNewObjActivity.class);*/
         } else if (id == R.id.nav_setting) {
             goToActivity(this, CreateNewObjActivity.class);
         }

@@ -11,10 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
@@ -31,6 +27,11 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
 import static android.content.ContentValues.TAG;
 
@@ -83,14 +84,14 @@ public class BARReader extends AppCompatActivity {
                 } else {
                     Toast.makeText(BARReader.this, "Permission Denied!", Toast.LENGTH_SHORT).show();
                 }
-            case 1:
+            /*case 1:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Button button = (Button) findViewById(R.id.button);
                     button.setEnabled(true);
                     Log.i("msg", "qwee");
                 } else {
                     Toast.makeText(BARReader.this, "Permission Denied!", Toast.LENGTH_SHORT).show();
-                }
+                }*/
 
         }
     }

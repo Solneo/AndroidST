@@ -1,59 +1,73 @@
 package com.example.myapplicationst.Main;
 
-import android.support.v7.widget.RecyclerView;
+
 import android.widget.TextView;
 
 import com.example.myapplicationst.App.AppNetCom;
+import com.example.myapplicationst.R;
+
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Ыщвф on 19.11.2018.
  */
 
 public class ThemeChUt {
+    private int PRIMARY_DARK = 0xFF263238;
+    private int PRIMARY_DARK_SHADOW = 0xFF131619;
+    private int PRIMARY_DARK_TEXT = 0xFFFFFFFF;
+    private int SECONDARY_DARK_TEXT = 0xFFcfd8dc;
+
+    private int PRIMARY_LIGHT = 0xFFf0f0f0;
+    private int PRIMARY_LIGHT_SHADOW = 0xFFcfd8dc;
+    private int PRIMARY_LIGHT_TEXT = 0xFF212121;
+    private int SECONDARY_LIGHT_TEXT = 0xFF555555;
+
     public void setMyThemeToRec(RecyclerView recyclerView) {
-        String th = AppNetCom.getMyTheme();
+        int th = AppNetCom.getMyTheme();
         switch (th) {
-            case "Dark":
-                recyclerView.setBackgroundColor(0xFF202020);
+            case R.style.myThemeDark:
+                recyclerView.setBackgroundColor(PRIMARY_DARK_SHADOW);
                 break;
             default:
-                recyclerView.setBackgroundColor(0xFFC0C0C0);
+                recyclerView.setBackgroundColor(PRIMARY_LIGHT_SHADOW);
                 break;
         }
     }
 
-    public void setMyThemeToRecItem(android.support.v7.widget.CardView v) {
-        String th = AppNetCom.getMyTheme();
+    public void setMyThemeToRecItem(CardView v) {
+        int th = AppNetCom.getMyTheme();
         switch (th) {
-            case "Dark":
-                v.setCardBackgroundColor(0xFF323232);
+            case R.style.myThemeDark:
+                v.setCardBackgroundColor(PRIMARY_DARK);
                 break;
             default:
-                v.setCardBackgroundColor(0xFFC0C0C0);
+                v.setCardBackgroundColor(PRIMARY_LIGHT);
                 break;
         }
     }
 
     public void setMyThemeToTextView(TextView textView) {
-        String th = AppNetCom.getMyTheme();
+        int th = AppNetCom.getMyTheme();
         switch (th) {
-            case "Dark":
-                textView.setTextColor(0xFFB0B0B0);
+            case R.style.myThemeDark:
+                textView.setTextColor(SECONDARY_DARK_TEXT);
                 break;
             default:
-                textView.setTextColor(0xFF101010);
+                textView.setTextColor(SECONDARY_LIGHT_TEXT);
                 break;
         }
     }
 
     public void setMyThemeToTextView(TextView textView, String title) {
-        String th = AppNetCom.getMyTheme();
+        int th = AppNetCom.getMyTheme();
         switch (th) {
-            case "Dark":
-                textView.setTextColor(0xFFFFFFFF);
+            case R.style.myThemeDark:
+                textView.setTextColor(PRIMARY_DARK_TEXT);
                 break;
             default:
-                textView.setTextColor(0xFF101010);
+                textView.setTextColor(PRIMARY_LIGHT_TEXT);
                 break;
         }
     }

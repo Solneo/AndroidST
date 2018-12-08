@@ -27,6 +27,7 @@ public class MyAccountActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(AppNetCom.getMyTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_account);
         startLoadUserData();

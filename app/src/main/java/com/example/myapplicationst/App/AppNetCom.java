@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.res.Configuration;
 
 import com.example.myapplicationst.NetCommunication.ServiceAPIConnect;
+import com.example.myapplicationst.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -23,7 +24,7 @@ public class AppNetCom extends Application {
     private static String stringToken;
     private static String stringCookie;
     private static Boolean Auth;
-    private static String myTheme;
+    private static int myTheme;
 
 
     @Override
@@ -48,15 +49,15 @@ public class AppNetCom extends Application {
         setAuth(false);
         setStringToken(null);
         setStringCookie(null);
-        setMyTheme("");
+        setMyTheme(R.style.myThemeDark);
     }
 
-    public static void setMyTheme(String myTheme) {
+    public static void setMyTheme(int myTheme) {
         AppNetCom.myTheme = myTheme;
     }
 
 
-    public static String getMyTheme() {
+    public static int getMyTheme() {
         return myTheme;
     }
 

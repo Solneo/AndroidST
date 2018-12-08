@@ -1,11 +1,11 @@
 package com.example.myapplicationst.NetCommunication.NetUtil;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import java.io.File;
 import java.net.URLConnection;
 
+import androidx.annotation.NonNull;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

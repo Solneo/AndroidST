@@ -1,8 +1,6 @@
 package com.example.myapplicationst.NetCommunication.Adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +16,10 @@ import com.example.myapplicationst.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Ыщвф on 03.10.2018.
@@ -85,7 +87,7 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
         ImageView prev;
         TextView sdacha;
         TextView addr;
-        android.support.v7.widget.CardView card;
+        CardView card;
         String str;
 
         @Override
@@ -102,7 +104,7 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
             prev = (ImageView) v.findViewById(R.id.image_pre);
             sdacha = (TextView) v.findViewById(R.id.sdacha);
             addr = (TextView) v.findViewById(R.id.addr);
-            card = (android.support.v7.widget.CardView) v.findViewById(R.id.card_view);
+            card = (CardView) v.findViewById(R.id.card_view);
 
             themeChUt.setMyThemeToRecItem(card);
             themeChUt.setMyThemeToTextView(addr);

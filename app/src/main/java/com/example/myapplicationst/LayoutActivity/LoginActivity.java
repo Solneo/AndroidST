@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplicationst.App.AppNetCom;
+import com.example.myapplicationst.LayoutActivity.AuthInstrument.AuthValidate;
 import com.example.myapplicationst.NetCommunication.Models.ModelAuth;
 import com.example.myapplicationst.NetCommunication.Models.SubModels.RecuestBody;
 import com.example.myapplicationst.NetCommunication.Models.SubModels.User;
@@ -44,6 +45,7 @@ public class LoginActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(AppNetCom.getMyTheme());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         nameView = (EditText) findViewById(R.id.name);
@@ -70,8 +72,8 @@ public class LoginActivity extends Activity {
 
 
     public void loginStart() {
-
-        if (!validate()) {
+        AuthValidate authValidate = new AuthValidate();
+        if (!authValidate.validate(nameView.getText().toString(), passwordView.getText().toString())) {
             onLoginFailed();
             return;
         }
@@ -97,11 +99,6 @@ public class LoginActivity extends Activity {
         }
     }
 
-    public boolean validate() {
-        boolean valid;
-        valid = true;
-        return valid;
-    }
 
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();

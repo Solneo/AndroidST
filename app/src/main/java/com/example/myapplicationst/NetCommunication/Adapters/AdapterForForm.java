@@ -1,8 +1,6 @@
 package com.example.myapplicationst.NetCommunication.Adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +13,9 @@ import com.example.myapplicationst.NetCommunication.Models.ModelForm;
 import com.example.myapplicationst.R;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Ыщвф on 07.11.2018.
@@ -30,7 +31,6 @@ public class AdapterForForm extends RecyclerView.Adapter<AdapterForForm.ViewHold
         this.posts = posts;
         this.context = context;
         this.providerToGlob = providerToGlob;
-
     }
 
     @Override
@@ -90,7 +90,6 @@ public class AdapterForForm extends RecyclerView.Adapter<AdapterForForm.ViewHold
 
         public ViewHolder(View v) {
             super(v);
-
             str = " ";
             post = (TextView) v.findViewById(R.id.textView_post);
             site = (TextView) v.findViewById(R.id.textView_site);

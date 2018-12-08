@@ -2,10 +2,10 @@ package com.example.myapplicationst.Slider;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.v4.view.ViewPager;
 
 import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 
+import androidx.viewpager.widget.ViewPager;
 import me.relex.circleindicator.CircleIndicator;
 
 /**
@@ -33,7 +33,7 @@ public class Slider {
         mPager = viewPager;
         mPager.setAdapter(new PageAdapter(context, imgg));
         CircleIndicator indicator = circleIndicator;
-        indicator.setViewPager(mPager);
+        /*  indicator.setViewPager(mPager);*/
 
         // Auto start of viewpager
         final Handler handler = new Handler();

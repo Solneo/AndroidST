@@ -14,13 +14,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import com.example.myapplicationst.R;
 
@@ -29,6 +27,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.core.app.ActivityCompat;
 
 /**
  * Created by Ыщвф on 01.11.2018.
@@ -109,7 +109,7 @@ public class ImagePickUpUtil {
      * @return
      */
     private static ArrayAdapter<ResolveInfo> buildAdapter(final Context context, final List<ResolveInfo> activitiesInfo) {
-        return new ArrayAdapter<ResolveInfo>(context, R.layout.create_obj_activity, R.id.title, activitiesInfo) {
+        return new ArrayAdapter<ResolveInfo>(context, R.layout.activity_create_obj, R.id.title, activitiesInfo) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);

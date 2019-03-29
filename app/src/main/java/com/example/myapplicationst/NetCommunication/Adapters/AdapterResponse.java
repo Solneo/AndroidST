@@ -1,8 +1,6 @@
 package com.example.myapplicationst.NetCommunication.Adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +8,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
-import com.example.myapplicationst.NetCommunication.Models.PostModel;
+import com.example.myapplicationst.Main.ThemeChUt;
 import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.RecyclerViewClickListener;
+import com.example.myapplicationst.NetCommunication.Models.PostModel;
+import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 import com.example.myapplicationst.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Ыщвф on 03.10.2018.
@@ -27,11 +30,13 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
     private List<Images> img;
     private Context context;
     private static RecyclerViewClickListener itemListener;
+    ThemeChUt themeChUt;
 
     public AdapterResponse(List<PostModel> posts, Context context, RecyclerViewClickListener itemListener) {
         this.posts = posts;
         this.context = context;
         this.itemListener = itemListener;
+        themeChUt = new ThemeChUt();
     }
 
     public void recyclerViewListClicked(View v, int position, String str) {
@@ -42,7 +47,7 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
     @NonNull
     @Override
     public AdapterResponse.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_for_list_object, parent, false);
         v.setVisibility(View.VISIBLE);
         return new ViewHolder(v);
     }
@@ -57,9 +62,10 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
         }else {
             holder.post.setText(Html.fromHtml(postModel.getElementPureHtml()));
         }*/
+
         holder.addr.setText(postModel.getAddr());
         holder.sdacha.setText("Сдача в " + postModel.getRent_date());
-        holder.post.setText(postModel.getPrice() + " руб/м. кв.");
+        holder.post.setText(postModel.getPrice() + " \u20BD");
         holder.site.setText(postModel.getTitle());
         holder.str = postModel.getobjId();
 
@@ -81,6 +87,7 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
         ImageView prev;
         TextView sdacha;
         TextView addr;
+        CardView card;
         String str;
 
         @Override
@@ -97,7 +104,13 @@ public class AdapterResponse extends RecyclerView.Adapter<AdapterResponse.ViewHo
             prev = (ImageView) v.findViewById(R.id.image_pre);
             sdacha = (TextView) v.findViewById(R.id.sdacha);
             addr = (TextView) v.findViewById(R.id.addr);
+            card = (CardView) v.findViewById(R.id.card_view);
 
+            themeChUt.setMyThemeToRecItem(card);
+            themeChUt.setMyThemeToTextView(addr);
+            themeChUt.setMyThemeToTextView(sdacha);
+            themeChUt.setMyThemeToTextView(post, "");
+            themeChUt.setMyThemeToTextView(site, "");
 
         }
     }

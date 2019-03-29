@@ -20,6 +20,7 @@
         completions."
     </string>
     <string name="title_activity_settings">Настройки</string>
+    <string name="search_hint">Поиск</string>
 
     <!-- Strings related to Settings -->
 

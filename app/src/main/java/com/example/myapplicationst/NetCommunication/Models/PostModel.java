@@ -15,21 +15,21 @@ public class PostModel {
     @SerializedName("title")
     @Expose
     private String title;
-    @SerializedName("price")
+    @SerializedName("field_price")
     @Expose
     private String price;
 
-    @SerializedName("rent_date")
+    @SerializedName("field_rent_date")
     @Expose
     private String rent_date;
-    @SerializedName("addr")
+    @SerializedName("field_addresss")
     @Expose
     private String addr;
-    @SerializedName("id")
+    @SerializedName("nid")
     @Expose
     private String objId;
 
-    @SerializedName("images")
+    @SerializedName("field_photo")
     @Expose
     private Images images;
 

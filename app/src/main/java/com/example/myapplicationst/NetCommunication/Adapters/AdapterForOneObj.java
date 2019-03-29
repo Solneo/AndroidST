@@ -1,7 +1,6 @@
 package com.example.myapplicationst.NetCommunication.Adapters;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplicationst.NetCommunication.AdditionalIntetrfaces.FrInerf;
-import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 import com.example.myapplicationst.NetCommunication.Models.ModelOneObj;
+import com.example.myapplicationst.NetCommunication.Models.SubModels.Images;
 import com.example.myapplicationst.R;
 import com.example.myapplicationst.Slider.Slider;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by Ыщвф on 13.10.2018.

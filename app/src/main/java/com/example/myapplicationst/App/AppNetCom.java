@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.res.Configuration;
 
 import com.example.myapplicationst.NetCommunication.ServiceAPIConnect;
+import com.example.myapplicationst.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -20,6 +21,10 @@ public class AppNetCom extends Application {
     private static ServiceAPIConnect serviceAPIConnect;
     private Retrofit retrofit;
     private static String stringId;
+    private static String stringToken;
+    private static String stringCookie;
+    private static Boolean Auth;
+    private static int myTheme;
 
 
     @Override
@@ -33,23 +38,59 @@ public class AppNetCom extends Application {
                 .create();
         retrofit = new Retrofit.Builder()
                 /*.baseUrl("https://novorossiysk.33kvartiry.ru")*/
-                .baseUrl("http://betta.iqads.ru")
+                .baseUrl("http://dalen.iqads.ru")
                 /*.baseUrl("http://httpbin.org")*/
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         serviceAPIConnect = retrofit.create(ServiceAPIConnect.class);
         setStringId("15");
-
-
+        setStringToken("null");
+        setAuth(false);
+        setStringToken(null);
+        setStringCookie(null);
+        setMyTheme(R.style.myThemeDark);
     }
 
-    public void setStringId(String stringId) {
-        this.stringId = stringId;
+    public static void setMyTheme(int myTheme) {
+        AppNetCom.myTheme = myTheme;
+    }
+
+
+    public static int getMyTheme() {
+        return myTheme;
+    }
+
+    public static void setStringCookie(String stringCookie) {
+        AppNetCom.stringCookie = stringCookie;
+    }
+
+    public static String getStringCookie() {
+        return stringCookie;
+    }
+
+    public static Boolean getAuth() {
+        return Auth;
+    }
+
+    public static void setAuth(Boolean auth) {
+        Auth = auth;
+    }
+
+    public static void setStringId(String stringId) {
+        AppNetCom.stringId = stringId;
     }
 
     public static String getStringId() {
         return stringId;
+    }
+
+    public static void setStringToken(String stringToken) {
+        AppNetCom.stringToken = stringToken;
+    }
+
+    public static String getStringToken() {
+        return stringToken;
     }
 
     public static ServiceAPIConnect getApi() {

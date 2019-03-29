@@ -9,12 +9,8 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
@@ -24,6 +20,8 @@ import android.view.MenuItem;
 import com.example.myapplicationst.R;
 
 import java.util.List;
+
+import androidx.appcompat.app.ActionBar;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 

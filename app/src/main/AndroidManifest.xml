@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.myapplicationst">
-
-    <uses-sdk android:minSdkVersion="8" />
 
     <meta-data
         android:name="com.google.android.gms.vision.DEPENDENCIES"
@@ -41,8 +38,10 @@
 
         <activity
             android:name=".Main.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/myThemeDark">
+            <!--android:configChanges="orientation|keyboardHidden"-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,12 +49,41 @@
             </intent-filter>
         </activity>
         <activity android:name=".LayoutActivity.OneObject" />
-        <activity android:name=".LayoutActivity.ListObjekt" />
-        <activity android:name=".QrReader.BARReader" />
-        <activity android:name=".LayoutActivity.CreateNewObj.CreateNewObjActivity" />
+        <activity
+            android:name=".LayoutActivity.ListObjekt"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".QrReader.BARReader"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".LayoutActivity.CreateNewObj.CreateNewObjActivity"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".LayoutActivity.RegActivity"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".LayoutActivity.MyAccountActivity"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".Main.TestSintez"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".LayoutActivity.SearchActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name=".LastSearching"
+            android:authorities="com.example.myapplicationst.LastSearching" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -66,9 +94,11 @@
 
         <activity
             android:name=".LayoutActivity.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:theme="@style/myThemeDark"></activity>
         <activity
             android:name=".Settings.SettingsActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_settings"></activity>
     </application>
 
